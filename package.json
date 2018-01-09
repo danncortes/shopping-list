@@ -3,14 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "bootstrap": "^4.0.0-beta.3",
+    "json-schema-faker": "^0.4.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "reactstrap": "^5.0.0-alpha.4",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
+    "redux-promise": "^0.5.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "start:mock": "react-scripts start & npm run start-mockapi",
-    "start-mockapi": "json-server --watch ./db.json --port 3001",
+    "start-mockapi": "npm run prestart-mockapi & json-server --watch ./db.json --port 3001",
+    "generate-mock-data": "node generate-mock-data",
+    "prestart-mockapi": "npm run generate-mock-data",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

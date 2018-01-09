@@ -1,36 +1,49 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchLists } from '../../actions';
 
 class ListsView extends Component {
 
-    renderItems(data) {
-        return data.map((item) => {
+    componentDidMount() {
+        this.props.fetchLists();
+    }
+
+    renderItems() {
+        const lists = this.props.lists.map((item) => {
             return (
-                <li key={item.id}>{item.name}</li>
+                <tr key={item.id} className="valign-middle">
+                    <td>{item.date}</td>
+                    <td>{item.cost}</td>
+                    <td>{item.nProducts}</td>
+                    <td><button className="btn btn-warning btn-sm">Editar</button> <button className="btn btn-danger btn-sm">Eliminar</button></td>
+                </tr>
             )
         })
+
+        return lists;
     }
 
     render() {
-
-        const list = [
-            {
-                id: 1,
-                name: 'Arroz Premium',
-                price: 10
-            },
-            {
-                id: 2,
-                name: 'Azucar',
-                price: 6
-            }
-        ]
-
         return (
-            <ul>
-                {this.renderItems(list)}
-            </ul>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">N Productos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.renderItems()}
+                </tbody>
+            </table>
         )
     }
 }
 
-export default ListsView;
+function mapStateToProps(state) {
+    return { lists: state.lists }
+}
+
+export default connect(mapStateToProps, { fetchLists })(ListsView);
