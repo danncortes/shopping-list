@@ -4,7 +4,6 @@ import ProductsList from '../products-list/products-list';
 class ListsCreate extends Component {
     constructor(props){
         super(props)
-        console.log(this.props)
     }
     render() {
         

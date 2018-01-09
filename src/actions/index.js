@@ -5,6 +5,7 @@ export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 
 const ROOT_URL = 'http://localhost:3001';
 
@@ -41,5 +42,12 @@ export function createProduct(data){
     return{
         type: CREATE_PRODUCT,
         payload: request
+    }
+}
+
+export function addProductToList(product){
+    return {
+        type: ADD_PRODUCT_TO_LIST,
+        payload: product
     }
 }

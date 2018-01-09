@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
-import Reducers  from './reducers';
+import ProductReducer  from './reducer_products';
+import ListsReducer  from './reducer_lists';
+import ProductListReducer from './reducer_listproducts';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
-    products: Reducers,
-    lists: Reducers,
+    products: ProductReducer,
+    lists: ListsReducer,
+    listProducts:ProductListReducer,
     form: formReducer
 });
 
