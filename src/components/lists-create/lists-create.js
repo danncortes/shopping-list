@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductsList from '../products-list/products-list';
+import ProductsSelectedList from '../products-selected-list/products-selected-list';
 
 class ListsCreate extends Component {
     constructor(props){
@@ -9,9 +10,13 @@ class ListsCreate extends Component {
         
         return (
             <section className="col d-flex">
-                <div className="col-4">1</div>
-                <div className="col-8">
-                    <ProductsList products="hola" />
+                <div className="col-5">
+                    <h4 className="mb-3">Crear Lista de Compras</h4>
+                    <ProductsSelectedList/>
+                </div>
+                <div className="col-7">
+                    <h4 className="mb-3">Productos</h4>
+                    <ProductsList/>
                 </div>
             </section>
         )

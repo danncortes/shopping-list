@@ -7,7 +7,7 @@ import { reducer as formReducer } from 'redux-form';
 const rootReducer = combineReducers({
     products: ProductReducer,
     lists: ListsReducer,
-    listProducts:ProductListReducer,
+    selectedProducts:ProductListReducer,
     form: formReducer
 });
 

@@ -6,11 +6,11 @@ export default function(state = [], action) {
             return action.payload.data;
 
         case CREATE_PRODUCT:
-            state.products = [...state, action.payload.data]
+            state = [...state, action.payload.data]
             return state;
 
         case DELETE_PRODUCT:
-            state.products = state.filter(item => {
+            state = state.filter(item => {
                 return item.id !== action.payload
             });
             return state;

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { values } from 'redux-form';
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const FETCH_LISTS = 'FETCH_LISTS';
