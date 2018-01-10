@@ -18,7 +18,7 @@ var schema = {
                         "faker": "commerce.productName"
                     },
                     "price": {
-                        "type": "string",
+                        "type": "number",
                         "faker": "commerce.price"
                     },
                     "store": {
@@ -44,21 +44,30 @@ var schema = {
                     "nProducts": {
                         "type": "number",
                         "minimum": 1,
-                        "maximum" : 10
+                        "maximum": 10
+                    },
+                    "nItems": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 50
                     },
                     "cost": {
-                        "type": "string",
+                        "type": "number",
                         "faker": "finance.amount"
                     },
-                    "date":{
+                    "date": {
                         "type": "string",
                         "faker": "date.recent"
                     },
-                    "purchased":{
+                    "purchased": {
                         "type": "boolean"
+                    },
+                    "products": {
+                        "type": "text",
+                        "faker": "lorem.paragraph"
                     }
                 },
-                "required": ["id", "nProducts", "cost", "date", "purchased"]
+                "required": ["id", "nProducts", "nItems", "cost", "date", "purchased", "products"]
             }
         }
     },

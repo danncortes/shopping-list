@@ -15,6 +15,7 @@ class ListsView extends Component {
                     <td>{item.date}</td>
                     <td>{item.cost}</td>
                     <td>{item.nProducts}</td>
+                    <td>{item.nItems}</td>
                     <td><button className="btn btn-warning btn-sm">Editar</button> <button className="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
             )
@@ -30,7 +31,8 @@ class ListsView extends Component {
                     <tr>
                         <th scope="col">Fecha</th>
                         <th scope="col">Monto</th>
-                        <th scope="col">N Productos</th>
+                        <th scope="col">N Prod.</th>
+                        <th scope="col">N Items</th>
                         <th></th>
                     </tr>
                 </thead>
