@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addProductToList } from '../../actions';
 
 class ProductsSelectedList extends Component {
 
     renderList(){
         return this.props.selectedProducts.map((item)=>{
             return (
-                <li>{item.name}</li>
+                <li key={item.id}>{item.name}</li>
             )
         })
     }
@@ -27,4 +26,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {addProductToList})(ProductsSelectedList);
+export default connect(mapStateToProps)(ProductsSelectedList);
