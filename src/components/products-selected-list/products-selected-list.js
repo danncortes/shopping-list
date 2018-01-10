@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveList, clearList } from '../../actions';
+import { saveList, clearList, removeProductFromList } from '../../actions';
 
 class ProductsSelectedList extends Component {
 
@@ -44,7 +44,7 @@ class ProductsSelectedList extends Component {
                         <span className="col-2">{item.quant}</span>
                         <span className="col-2">{item.unitPrice}</span>
                         <span className="col-2">{item.subTotal}</span>
-                        <span className="col-2">X</span>
+                        <span className="col-2"> <a className="btn btn-sm" onClick={this.props.removeProductFromList.bind(this, item)}>X</a> </span>
                     </li>
                 )
             })
@@ -81,4 +81,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {saveList, clearList})(ProductsSelectedList);
+export default connect(mapStateToProps, {saveList, clearList, removeProductFromList})(ProductsSelectedList);

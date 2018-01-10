@@ -6,6 +6,7 @@ export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const SAVE_LIST = 'SAVE_LIST';
 export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
+export const REMOVE_PRODUCT_FROM_LIST = 'REMOVE_PRODUCT_FROM_LIST';
 export const CLEAR_LIST = 'CLEAR_LIST';
 
 const ROOT_URL = 'http://localhost:3001';
@@ -69,6 +70,13 @@ export function clearList(){
 export function addProductToList(product){
     return {
         type: ADD_PRODUCT_TO_LIST,
+        payload: {product, subTotal: product.subTotal}
+    }
+}
+
+export function removeProductFromList(product){
+    return {
+        type: REMOVE_PRODUCT_FROM_LIST,
         payload: {product, subTotal: product.subTotal}
     }
 }
