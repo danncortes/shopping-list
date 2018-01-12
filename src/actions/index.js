@@ -3,6 +3,9 @@ import axios from 'axios';
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const PRODUCT_TO_EDIT = 'PRODUCT_TO_EDIT';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
+export const REMOVE_PRODUCT_TO_EDIT = 'REMOVE_PRODUCT_TO_EDIT';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const SAVE_LIST = 'SAVE_LIST';
 export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
@@ -31,12 +34,34 @@ export function deleteProduct(id){
     }
 }
 
-export function createProduct(data){
-    const request = axios.post(`${ROOT_URL}/products`, data);
+export function createProduct(product){
+    const request = axios.post(`${ROOT_URL}/products`, product);
 
     return{
         type: CREATE_PRODUCT,
         payload: request
+    }
+}
+
+export function editProduct(id, product){
+    const request = axios.put(`${ROOT_URL}/products/${id}`, product);
+    return{
+        type: EDIT_PRODUCT,
+        payload: request
+    }
+}
+
+export function pickProductToEdit(product){
+    return{
+        type: PRODUCT_TO_EDIT,
+        payload: product
+    }
+}
+
+export function removeProductToEdit(){
+    return{
+        type: REMOVE_PRODUCT_TO_EDIT,
+        payload: {}
     }
 }
 

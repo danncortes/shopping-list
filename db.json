@@ -1,40 +1,16 @@
 {
   "products": [
     {
-      "id": 98255092,
       "name": "Handmade Rubber Keyboard",
-      "price": 553,
-      "store": "Auer - Wyman"
-    },
-    {
-      "id": 68609362,
-      "name": "Intelligent Concrete Ball",
-      "price": 382,
-      "store": "Stiedemann LLC"
+      "price": "553",
+      "store": "Auer - Wyman",
+      "id": 98255092
     },
     {
       "id": 7204832,
       "name": "Licensed Frozen Keyboard",
-      "price": 217,
+      "price": "2174",
       "store": "Kovacek Group"
-    },
-    {
-      "id": 23139258,
-      "name": "Generic Granite Table",
-      "price": 728,
-      "store": "Kuhic - Hane"
-    },
-    {
-      "id": 33837422,
-      "name": "Incredible Concrete Bike",
-      "price": 331,
-      "store": "Boyer, Nienow and Hamill"
-    },
-    {
-      "id": 37959424,
-      "name": "Incredible Plastic Computer",
-      "price": 890,
-      "store": "Purdy, Dietrich and Veum"
     },
     {
       "id": 96714144,
@@ -43,16 +19,22 @@
       "store": "Wolff, Price and Shanahan"
     },
     {
-      "id": 4873045,
-      "name": "Handmade Fresh Tuna",
-      "price": 158,
-      "store": "Shanahan - Stamm"
-    },
-    {
       "id": 78365511,
       "name": "Licensed Steel Hat",
       "price": 145,
       "store": "Bartell LLC"
+    },
+    {
+      "name": "azucar",
+      "price": "3000",
+      "store": "Jumbo",
+      "id": 98255093
+    },
+    {
+      "name": "jugo",
+      "price": "123",
+      "store": "D1",
+      "id": 98255094
     }
   ],
   "lists": [

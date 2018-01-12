@@ -5,7 +5,6 @@ export default function(state = [], action) {
         case FETCH_LISTS:
             return action.payload.data
         case SAVE_LIST:
-        console.log(action)
             state = [...state, action.payload.data];
             return state;
         default:

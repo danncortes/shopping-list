@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../../actions';
-import { deleteProduct } from '../../actions';
+import { fetchProducts, deleteProduct, pickProductToEdit } from '../../actions';
 import  ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
@@ -20,7 +19,7 @@ class ProductsView extends Component {
                     <td>{item.name}</td>
                     <td>{item.price}</td>
                     <td>{item.store}</td>
-                    <td><button className="btn btn-warning btn-sm">Editar</button> <button onClick={this.deleteProduct.bind(this, item.id)} className="btn btn-danger btn-sm">Eliminar</button></td>
+                    <td><button className="btn btn-warning btn-sm" onClick={()=>{this.props.pickProductToEdit(item)}}>Editar</button> <button onClick={this.deleteProduct.bind(this, item.id)} className="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
             )
         })
@@ -33,7 +32,7 @@ class ProductsView extends Component {
         return (
             <section className="col">
                 <h4>Crear Producto</h4>
-                <ProductCreate />
+                <ProductCreate initialValues={this.props.productToEdit}/>
                 <h4>Productos</h4>
                 <table className="table">
                     <thead>
@@ -54,7 +53,10 @@ class ProductsView extends Component {
 }
 
 function mapStateToProps(state) {
-    return { products: state.products }
+    return {
+        products: state.products,
+        productToEdit: state.productToEdit
+    }
 }
 
-export default connect(mapStateToProps, { fetchProducts, deleteProduct })(ProductsView);
+export default connect(mapStateToProps, { fetchProducts, deleteProduct, pickProductToEdit })(ProductsView);
