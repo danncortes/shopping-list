@@ -5,9 +5,11 @@ export default function(state = {}, action) {
         case PRODUCT_TO_EDIT:
             state = action.payload
             return state;  
+
         case REMOVE_PRODUCT_TO_EDIT:
             state = {}
-            return state;  
+            return state; 
+             
         default:
             return state;
     }

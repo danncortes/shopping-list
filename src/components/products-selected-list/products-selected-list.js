@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveList, clearList, removeProductFromList } from '../../actions';
+import { saveList, clearList, removeProductFromList, updateList } from '../../actions';
 
 class ProductsSelectedList extends Component {
 
@@ -25,9 +25,16 @@ class ProductsSelectedList extends Component {
             products: JSON.stringify(products)
         }
 
-        this.props.saveList(list).then(()=>{
-            this.props.clearList();
-        });
+        if(this.props.selectedProducts.id === ''){
+            this.props.saveList(list).then(()=>{
+                this.props.clearList();
+            });
+        }
+        else{
+            this.props.updateList(list, this.props.selectedProducts.id).then(()=>{
+                this.props.clearList();
+            });
+        }
     }
 
     renderList() {
@@ -53,6 +60,8 @@ class ProductsSelectedList extends Component {
 
     render() {
 
+        var submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <a className="btn btn-success btn-sm" onClick={()=>{this.postList()}}>{this.props.selectedProducts.id === '' ? 'Guardar' : 'Editar'}</a>;
+
         return (
             <section>
                 <div className="row mb-3 header-selected-prod">
@@ -68,7 +77,7 @@ class ProductsSelectedList extends Component {
                     <span className="col-6"></span>
                     <span className="col-2">Total</span>
                     <span className="col-2">{this.props.selectedProducts.total}</span>
-                    <span><a className="btn btn-success btn-sm" onClick={()=>{this.postList()}}>Guardar</a></span>
+                    <span>{submitBtn}</span>
                 </div>
             </section>
         )
@@ -81,4 +90,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {saveList, clearList, removeProductFromList})(ProductsSelectedList);
+export default connect(mapStateToProps, {saveList, clearList, removeProductFromList, updateList})(ProductsSelectedList);

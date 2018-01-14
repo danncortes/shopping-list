@@ -8,8 +8,13 @@ export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const REMOVE_PRODUCT_TO_EDIT = 'REMOVE_PRODUCT_TO_EDIT';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const SAVE_LIST = 'SAVE_LIST';
+export const DELETE_LIST = 'DELETE_LIST';
+export const EDIT_LIST = 'EDIT_LIST';
+export const UPDATE_LIST = 'UPDATE_LIST';
+export const PURCHASE_LIST = 'PURCHASE_LIST'
 export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 export const REMOVE_PRODUCT_FROM_LIST = 'REMOVE_PRODUCT_FROM_LIST';
+export const EDIT_PRODUCT_ON_LIST = 'EDIT_PRODUCT_ON_LIST';
 export const CLEAR_LIST = 'CLEAR_LIST';
 
 const ROOT_URL = 'http://localhost:3001';
@@ -84,6 +89,41 @@ export function saveList(list, callBack){
     }
 }
 
+
+export function deleteList(list){
+    const request = axios.delete(`${ROOT_URL}/lists/${list.id}`);
+
+    return {
+        type: DELETE_LIST,
+        payload: list.id
+    }
+}
+
+export function editList(list){
+
+    return {
+        type: EDIT_LIST,
+        payload: list
+    }
+}
+
+export function updateList(list, id, callBack){
+    const request = axios.put(`${ROOT_URL}/lists/${id}`, list);
+    return {
+        type: UPDATE_LIST,
+        payload: request
+    }
+}
+
+export function purchaseList(list){
+    const request = axios.put(`${ROOT_URL}/lists/${list.id}`, list);
+
+    return {
+        type: PURCHASE_LIST,
+        payload: request
+    }
+}
+
 export function clearList(){
     return {
         type: CLEAR_LIST,
@@ -92,16 +132,23 @@ export function clearList(){
 }
 
 /*** SELECTED PRODUCTS ***/
-export function addProductToList(product){
+export function addProductToList(products, subtotal, id){
     return {
         type: ADD_PRODUCT_TO_LIST,
-        payload: {product, subTotal: product.subTotal}
+        payload: {products, subTotal: subtotal, id}
     }
 }
 
 export function removeProductFromList(product){
     return {
         type: REMOVE_PRODUCT_FROM_LIST,
+        payload: {product, subTotal: product.subTotal}
+    }
+}
+
+export function editProductOnList(product){
+    return {
+        type: EDIT_PRODUCT_ON_LIST,
         payload: {product, subTotal: product.subTotal}
     }
 }

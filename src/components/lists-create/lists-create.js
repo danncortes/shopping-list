@@ -3,11 +3,7 @@ import ProductsList from '../products-list/products-list';
 import ProductsSelectedList from '../products-selected-list/products-selected-list';
 
 class ListsCreate extends Component {
-    constructor(props){
-        super(props)
-    }
     render() {
-        
         return (
             <section className="col d-flex">
                 <div className="col-5">

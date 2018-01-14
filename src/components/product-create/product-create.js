@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { reset, Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux'
 import { createProduct, editProduct, removeProductToEdit } from '../../actions';
-
 
 class ProductCreate extends Component {
     
@@ -23,7 +21,7 @@ class ProductCreate extends Component {
 
     onSubmit(values) {
         const { reset } = this.props;
-        const isEditing = Object.keys(this.props.productToEdit).length != 0;
+        const isEditing = Object.keys(this.props.productToEdit).length !== 0;
         
         if(isEditing){
             if(JSON.stringify(this.props.productToEdit) !== JSON.stringify(values)){
@@ -48,24 +46,24 @@ class ProductCreate extends Component {
     }
     
     render() {
-        const isEditing = Object.keys(this.props.productToEdit).length != 0;
+        const isEditing = Object.keys(this.props.productToEdit).length !== 0;
         const handleSubmit = this.props.handleSubmit;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form-inline mb-4">
                 <Field
                     placeholder="Nombre"
                     name="name"
-                    component={this.renderField.bind(this)}
+                    component={this.renderField}
                 />
                 <Field
                     placeholder="Precio"
                     name="price"
-                    component={this.renderField.bind(this)}
+                    component={this.renderField}
                 />
                 <Field
                     placeholder="Tienda"
                     name="store"
-                    component={this.renderField.bind(this)}
+                    component={this.renderField}
                 />
                 <button type="submit" className="btn btn-primary">{isEditing  ? 'Editar' : 'Crear'}</button>
                 <a onClick={this.resetForm.bind(this)} className="btn btn-warning">Borrar</a>
