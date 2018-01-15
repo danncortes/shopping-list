@@ -31,7 +31,7 @@ class App extends Component {
                             </ul>
                         </div>
                     </nav>
-                    <div className="container-fluid d-flex flex-row">
+                    <div className="container-fluid flex-row">
                         <Switch>
                             <Route path="/lists" component={ListsView} />
                             <Route path="/products" component={ProductsView} />

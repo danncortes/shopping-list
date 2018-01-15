@@ -5,10 +5,12 @@ import ProductsSelectedList from '../products-selected-list/products-selected-li
 class ListsCreate extends Component {
     render() {
         return (
-            <section className="col d-flex">
+            <section className="row">
                 <div className="col-5">
                     <h4 className="mb-3">Crear Lista de Compras</h4>
-                    <ProductsSelectedList/>
+                    <div className="box-list">
+                        <ProductsSelectedList/>
+                    </div>
                 </div>
                 <div className="col-7">
                     <h4 className="mb-3">Productos</h4>

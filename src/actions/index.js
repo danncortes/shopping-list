@@ -80,7 +80,7 @@ export function fetchLists(){
     }
 }
 
-export function saveList(list, callBack){
+export function saveList(list){
     const request = axios.post(`${ROOT_URL}/lists`, list);
 
     return {
@@ -107,7 +107,7 @@ export function editList(list){
     }
 }
 
-export function updateList(list, id, callBack){
+export function updateList(list, id){
     const request = axios.put(`${ROOT_URL}/lists/${id}`, list);
     return {
         type: UPDATE_LIST,
@@ -127,7 +127,7 @@ export function purchaseList(list){
 export function clearList(){
     return {
         type: CLEAR_LIST,
-        payload: { products:[], total: 0}
+        payload: { products:[], total: 0, id: ''}
     }
 }
 

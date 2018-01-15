@@ -45,40 +45,22 @@
   ],
   "lists": [
     {
-      "nItems": 2,
-      "nProducts": 2,
-      "cost": 1052,
-      "date": "2018-01-14T20:54:13.025Z",
+      "nItems": 3,
+      "nProducts": 3,
+      "cost": 1500,
+      "date": "2018-01-14T21:17:13.756Z",
       "purchased": false,
-      "products": "[{\"id\":85518199,\"name\":\"Intelligent Frozen Table\",\"unitPrice\":\"57\",\"quant\":1,\"subTotal\":57,\"store\":\"Gulgowski, Morissette and Bruen\"},{\"id\":8300602,\"name\":\"Gorgeous Granite Soap\",\"unitPrice\":995,\"quant\":1,\"subTotal\":995,\"store\":\"Zulauf - Brown\"}]",
+      "products": "[{\"id\":8300602,\"name\":\"Gorgeous Granite Soap\",\"unitPrice\":995,\"quant\":1,\"subTotal\":995,\"store\":\"Zulauf - Brown\"},{\"id\":96248457,\"name\":\"Fantastic Frozen Hat\",\"unitPrice\":263,\"quant\":1,\"subTotal\":263,\"store\":\"Schinner, Balistreri and Murazik\"},{\"id\":72973971,\"name\":\"Licensed Concrete Tuna\",\"unitPrice\":242,\"quant\":1,\"subTotal\":242,\"store\":\"Kohler, Weimann and Kuphal\"}]",
       "id": 1
     },
     {
-      "nItems": 3,
-      "nProducts": 2,
-      "cost": 1109,
-      "date": "2018-01-14T20:55:18.805Z",
+      "nItems": 23,
+      "nProducts": 5,
+      "cost": 3328,
+      "date": "2018-01-14T21:17:44.040Z",
       "purchased": false,
-      "products": "[{\"id\":85518199,\"name\":\"Intelligent Frozen Table\",\"unitPrice\":\"57\",\"quant\":2,\"subTotal\":57,\"store\":\"Gulgowski, Morissette and Bruen\"},{\"id\":8300602,\"name\":\"Gorgeous Granite Soap\",\"unitPrice\":995,\"quant\":1,\"subTotal\":995,\"store\":\"Zulauf - Brown\"}]",
+      "products": "[{\"id\":96248460,\"name\":\"Hola2\",\"unitPrice\":\"12\",\"quant\":6,\"subTotal\":12,\"store\":\"D1\"},{\"id\":96248457,\"name\":\"Fantastic Frozen Hat\",\"unitPrice\":263,\"quant\":9,\"subTotal\":263,\"store\":\"Schinner, Balistreri and Murazik\"},{\"id\":72973971,\"name\":\"Licensed Concrete Tuna\",\"unitPrice\":242,\"quant\":2,\"subTotal\":242,\"store\":\"Kohler, Weimann and Kuphal\"},{\"id\":96248458,\"name\":\"azucar\",\"unitPrice\":\"123\",\"quant\":3,\"subTotal\":123,\"store\":\"D1\"},{\"id\":96248459,\"name\":\"Hola\",\"unitPrice\":\"12\",\"quant\":3,\"subTotal\":12,\"store\":\"wer\"}]",
       "id": 2
-    },
-    {
-      "nItems": 4,
-      "nProducts": 3,
-      "cost": 619,
-      "date": "2018-01-14T20:55:42.259Z",
-      "purchased": false,
-      "products": "[{\"id\":85518199,\"name\":\"Intelligent Frozen Table\",\"unitPrice\":\"57\",\"quant\":2,\"subTotal\":57,\"store\":\"Gulgowski, Morissette and Bruen\"},{\"id\":96248457,\"name\":\"Fantastic Frozen Hat\",\"unitPrice\":263,\"quant\":1,\"subTotal\":263,\"store\":\"Schinner, Balistreri and Murazik\"},{\"id\":72973971,\"name\":\"Licensed Concrete Tuna\",\"unitPrice\":242,\"quant\":1,\"subTotal\":242,\"store\":\"Kohler, Weimann and Kuphal\"}]",
-      "id": 3
-    },
-    {
-      "nItems": 3,
-      "nProducts": 3,
-      "cost": 1315,
-      "date": "2018-01-14T20:58:20.921Z",
-      "purchased": true,
-      "products": "[{\"id\":85518199,\"name\":\"Intelligent Frozen Table\",\"unitPrice\":\"57\",\"quant\":1,\"subTotal\":57,\"store\":\"Gulgowski, Morissette and Bruen\"},{\"id\":8300602,\"name\":\"Gorgeous Granite Soap\",\"unitPrice\":995,\"quant\":1,\"subTotal\":995,\"store\":\"Zulauf - Brown\"},{\"id\":96248457,\"name\":\"Fantastic Frozen Hat\",\"unitPrice\":263,\"quant\":1,\"subTotal\":263,\"store\":\"Schinner, Balistreri and Murazik\"}]",
-      "id": 4
     }
   ]
 }

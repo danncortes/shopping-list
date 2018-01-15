@@ -4,12 +4,12 @@ import { saveList, clearList, removeProductFromList, updateList } from '../../ac
 
 class ProductsSelectedList extends Component {
 
-    postList(){
+    postList() {
         const products = this.props.selectedProducts.products;
 
-        function sumItems(arr, index){
+        function sumItems(arr, index) {
             var total = 0;
-            arr.forEach((item)=>{
+            arr.forEach((item) => {
                 total += item[index];
             })
             return total;
@@ -25,16 +25,20 @@ class ProductsSelectedList extends Component {
             products: JSON.stringify(products)
         }
 
-        if(this.props.selectedProducts.id === ''){
-            this.props.saveList(list).then(()=>{
+        if (this.props.selectedProducts.id === '') {
+            this.props.saveList(list).then(() => {
                 this.props.clearList();
             });
         }
-        else{
-            this.props.updateList(list, this.props.selectedProducts.id).then(()=>{
+        else {
+            this.props.updateList(list, this.props.selectedProducts.id).then(() => {
                 this.props.clearList();
             });
         }
+    }
+
+    cancelEdit() {
+        this.props.clearList();
     }
 
     renderList() {
@@ -46,12 +50,14 @@ class ProductsSelectedList extends Component {
         else {
             return this.props.selectedProducts.products.map((item) => {
                 return (
-                    <li key={item.id} className="row item">
-                        <span className="col-4">{item.name}</span>
-                        <span className="col-2">{item.quant}</span>
-                        <span className="col-2">{item.unitPrice}</span>
-                        <span className="col-2">{item.subTotal}</span>
-                        <span className="col-2"> <a className="btn btn-sm" onClick={this.props.removeProductFromList.bind(this, item)}>X</a> </span>
+                    <li key={item.id} className="item">
+                        <div className="row">
+                            <span className="col-4">{item.name}</span>
+                            <span className="col-2">{item.quant}</span>
+                            <span className="col-2">{item.unitPrice}</span>
+                            <span className="col-2">{item.subTotal}</span>
+                            <span className="col-2"> <a className="btn btn-sm" onClick={this.props.removeProductFromList.bind(this, item)}>X</a> </span>
+                        </div>
                     </li>
                 )
             })
@@ -60,7 +66,9 @@ class ProductsSelectedList extends Component {
 
     render() {
 
-        var submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <a className="btn btn-success btn-sm" onClick={()=>{this.postList()}}>{this.props.selectedProducts.id === '' ? 'Guardar' : 'Editar'}</a>;
+        var submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <a className="btn btn-success btn-sm" onClick={this.postList.bind(this)}>{this.props.selectedProducts.id === '' ? 'Guardar' : 'Editar'}</a>;
+
+        var cancelBtn = this.props.selectedProducts.id === '' ? '' : <a className="btn btn-danger btn-sm" onClick={this.cancelEdit.bind(this)}>Cancel</a>;
 
         return (
             <section>
@@ -73,11 +81,13 @@ class ProductsSelectedList extends Component {
                 <ul className="selected-products-list">
                     {this.renderList()}
                 </ul>
-                <div className="row">
-                    <span className="col-6"></span>
-                    <span className="col-2">Total</span>
-                    <span className="col-2">{this.props.selectedProducts.total}</span>
-                    <span>{submitBtn}</span>
+                <div>
+                    <div className="row">
+                        <span className="col-6"></span>
+                        <span className="col-2">Total</span>
+                        <span className="col-2">{this.props.selectedProducts.total}</span>
+                        <span>{submitBtn}{cancelBtn}</span>
+                    </div>
                 </div>
             </section>
         )
@@ -90,4 +100,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {saveList, clearList, removeProductFromList, updateList})(ProductsSelectedList);
+export default connect(mapStateToProps, { saveList, clearList, removeProductFromList, updateList })(ProductsSelectedList);

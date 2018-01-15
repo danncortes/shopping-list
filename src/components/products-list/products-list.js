@@ -26,7 +26,8 @@ class ProductsList extends Component{
         if(foundProduct.length > 0){
             this.props.editProductOnList(newProd);
         }else{
-            this.props.addProductToList([newProd], newProd.subTotal, '');
+            
+            this.props.addProductToList([newProd], newProd.subTotal, this.props.selectedProducts.id);
         }
     }
 
