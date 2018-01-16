@@ -66,6 +66,7 @@ class ProductCreate extends Component {
                     component={this.renderField}
                 />
                 <button type="submit" className="btn btn-primary mr-2">{isEditing  ? 'Editar' : 'Crear'}</button>
+                
                 <button onClick={this.resetForm.bind(this)} className="btn btn-warning">Borrar</button>
             </form>
         )

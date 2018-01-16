@@ -132,10 +132,10 @@ export function clearList(){
 }
 
 /*** SELECTED PRODUCTS ***/
-export function addProductToList(products, subtotal, id){
+export function addProductToList(products, subTotal, id){
     return {
         type: ADD_PRODUCT_TO_LIST,
-        payload: {products, subTotal: subtotal, id}
+        payload: {products, subTotal, id}
     }
 }
 

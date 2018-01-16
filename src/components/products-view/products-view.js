@@ -4,6 +4,7 @@ import { fetchProducts, deleteProduct, pickProductToEdit } from '../../actions';
 import ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
+
     componentDidMount() {
         this.props.fetchProducts();
     }
@@ -13,15 +14,16 @@ class ProductsView extends Component {
     }
 
     renderItems() {
-        return this.props.products.map((item) => {
+        return this.props.products.map((product) => {
             return (
-                <tr key={item.id} className="valign-middle">
-                    <td>{item.name}</td>
-                    <td>{item.price}</td>
-                    <td>{item.store}</td>
+                <tr key={product.id} className="valign-middle">
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>{product.store}</td>
                     <td>
-                        <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pickProductToEdit(item) }}>Editar</button>
-                        <button onClick={this.deleteProduct.bind(this, item.id)} className="btn btn-danger btn-sm">Eliminar</button>
+                        <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pickProductToEdit(product) }}>Editar</button>
+                        
+                        <button onClick={this.deleteProduct.bind(this, product.id)} className="btn btn-danger btn-sm">Eliminar</button>
                     </td>
                 </tr>
             )

@@ -8,10 +8,6 @@ class ListsView extends Component {
         this.props.fetchLists();
     }
 
-    deleteListClick(list){
-        this.props.deleteList(list)
-    }
-
     editList(list){
         this.props.clearList();
         var products = JSON.parse(list.products);
@@ -25,17 +21,19 @@ class ListsView extends Component {
     }
 
     renderItems() {
-        const lists = this.props.lists.map((item) => {
+        const lists = this.props.lists.map((list) => {
             return (
-                <tr key={item.id} className="valign-middle">
-                    <td>{item.date}</td>
-                    <td>{item.cost}</td>
-                    <td>{item.nProducts}</td>
-                    <td>{item.nItems}</td>
+                <tr key={list.id} className="valign-middle">
+                    <td>{list.date}</td>
+                    <td>{list.cost}</td>
+                    <td>{list.nProducts}</td>
+                    <td>{list.nItems}</td>
                     <td>
-                        <button className="btn btn-warning btn-sm mr-2" onClick={()=>{this.editList(item)}} style={{ display: item.purchased ? 'none' : 'initial' }}>Editar</button>
-                        <button className="btn btn-danger btn-sm mr-2" onClick={this.deleteListClick.bind(this, item)}>Eliminar</button>
-                        <button className={`btn ${item.purchased ? '' : 'btn-success'} btn-sm`} onClick={this.purchaseListClick.bind(this, item)} disabled={ item.purchased ? 'disabled' : '' }>{item.purchased ? 'Comprada' : 'Comprar'}</button>
+                        <button className="btn btn-warning btn-sm mr-2" onClick={()=>{this.editList(list)}} style={{ display: list.purchased ? 'none' : 'initial' }}>Editar</button>
+
+                        <button className="btn btn-danger btn-sm mr-2" onClick={this.props.deleteList.bind(this,list)}>Eliminar</button>
+
+                        <button className={`btn ${list.purchased ? '' : 'btn-success'} btn-sm`} onClick={this.purchaseListClick.bind(this, list)} disabled={ list.purchased ? 'disabled' : '' }>{list.purchased ? 'Comprada' : 'Comprar'}</button>
                     </td>
                 </tr>
             )

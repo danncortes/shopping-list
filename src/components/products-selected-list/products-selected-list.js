@@ -49,15 +49,15 @@ class ProductsSelectedList extends Component {
             )
         }
         else {
-            return this.props.selectedProducts.products.map((item) => {
+            return this.props.selectedProducts.products.map((product) => {
                 return (
-                    <li key={item.id} className="item">
+                    <li key={product.id} className="item">
                         <div className="row">
-                            <span className="col-4">{item.name}</span>
-                            <span className="col-2">{item.quant}</span>
-                            <span className="col-2">{item.unitPrice}</span>
-                            <span className="col-2">{item.subTotal}</span>
-                            <span className="col-2"> <button className="btn btn-warning btn-sm" onClick={this.props.removeProductFromList.bind(this, item)}><i className="fas fa-trash-alt"></i></button> </span>
+                            <span className="col-4">{product.name}</span>
+                            <span className="col-2">{product.quant}</span>
+                            <span className="col-2">{product.unitPrice}</span>
+                            <span className="col-2">{product.subTotal}</span>
+                            <span className="col-2"> <button className="btn btn-warning btn-sm" onClick={this.props.removeProductFromList.bind(this, product)}><i className="fas fa-trash-alt"></i></button> </span>
                         </div>
                     </li>
                 )
