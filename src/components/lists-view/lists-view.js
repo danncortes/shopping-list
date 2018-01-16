@@ -33,8 +33,8 @@ class ListsView extends Component {
                     <td>{item.nProducts}</td>
                     <td>{item.nItems}</td>
                     <td>
-                        <button className="btn btn-warning btn-sm" onClick={()=>{this.editList(item)}} style={{ display: item.purchased ? 'none' : 'initial' }}>Editar</button>
-                        <button className="btn btn-danger btn-sm" onClick={this.deleteListClick.bind(this, item)}>Eliminar</button>
+                        <button className="btn btn-warning btn-sm mr-2" onClick={()=>{this.editList(item)}} style={{ display: item.purchased ? 'none' : 'initial' }}>Editar</button>
+                        <button className="btn btn-danger btn-sm mr-2" onClick={this.deleteListClick.bind(this, item)}>Eliminar</button>
                         <button className={`btn ${item.purchased ? '' : 'btn-success'} btn-sm`} onClick={this.purchaseListClick.bind(this, item)} disabled={ item.purchased ? 'disabled' : '' }>{item.purchased ? 'Comprada' : 'Comprar'}</button>
                     </td>
                 </tr>

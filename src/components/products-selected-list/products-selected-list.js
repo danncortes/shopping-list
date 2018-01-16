@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { saveList, clearList, removeProductFromList, updateList } from '../../actions';
 
@@ -20,7 +21,7 @@ class ProductsSelectedList extends Component {
             nItems: nItems,
             nProducts: products.length,
             cost: this.props.selectedProducts.total,
-            date: new Date(),
+            date: moment().format(),
             purchased: false,
             products: JSON.stringify(products)
         }
@@ -56,7 +57,7 @@ class ProductsSelectedList extends Component {
                             <span className="col-2">{item.quant}</span>
                             <span className="col-2">{item.unitPrice}</span>
                             <span className="col-2">{item.subTotal}</span>
-                            <span className="col-2"> <a className="btn btn-sm" onClick={this.props.removeProductFromList.bind(this, item)}>X</a> </span>
+                            <span className="col-2"> <button className="btn btn-warning btn-sm" onClick={this.props.removeProductFromList.bind(this, item)}><i className="fas fa-trash-alt"></i></button> </span>
                         </div>
                     </li>
                 )
@@ -66,9 +67,9 @@ class ProductsSelectedList extends Component {
 
     render() {
 
-        var submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <a className="btn btn-success btn-sm" onClick={this.postList.bind(this)}>{this.props.selectedProducts.id === '' ? 'Guardar' : 'Editar'}</a>;
+        var submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <button className="btn btn-success btn-sm mr-2" onClick={this.postList.bind(this)}>{this.props.selectedProducts.id === '' ? <i className="fas fa-save"> Guardar</i> : 'Editar'}</button>;
 
-        var cancelBtn = this.props.selectedProducts.id === '' ? '' : <a className="btn btn-danger btn-sm" onClick={this.cancelEdit.bind(this)}>Cancel</a>;
+        var cancelBtn = this.props.selectedProducts.id === '' ? '' : <button className="btn btn-danger btn-sm" onClick={this.cancelEdit.bind(this)}>Cancel</button>;
 
         return (
             <section>

@@ -9,7 +9,7 @@ class ProductCreate extends Component {
 
         const { meta: { error, touched } } = field
         return (
-            <div>
+            <div className="mr-2">
                 <input type="text"
                     className="form-control"
                     {...field.input}
@@ -65,8 +65,8 @@ class ProductCreate extends Component {
                     name="store"
                     component={this.renderField}
                 />
-                <button type="submit" className="btn btn-primary">{isEditing  ? 'Editar' : 'Crear'}</button>
-                <a onClick={this.resetForm.bind(this)} className="btn btn-warning">Borrar</a>
+                <button type="submit" className="btn btn-primary mr-2">{isEditing  ? 'Editar' : 'Crear'}</button>
+                <button onClick={this.resetForm.bind(this)} className="btn btn-warning">Borrar</button>
             </form>
         )
     }

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import ProductsView from './products-view/products-view';
 import ListsView from './lists-view/lists-view';
 import ListsCreate from './lists-create/lists-create';
+import Router from 'react-router-dom/Router';
 
 class App extends Component {
     render() {

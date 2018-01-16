@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts, deleteProduct, pickProductToEdit } from '../../actions';
-import  ProductCreate from '../product-create/product-create';
+import ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
     componentDidMount() {
@@ -19,7 +19,10 @@ class ProductsView extends Component {
                     <td>{item.name}</td>
                     <td>{item.price}</td>
                     <td>{item.store}</td>
-                    <td><button className="btn btn-warning btn-sm" onClick={()=>{this.props.pickProductToEdit(item)}}>Editar</button> <button onClick={this.deleteProduct.bind(this, item.id)} className="btn btn-danger btn-sm">Eliminar</button></td>
+                    <td>
+                        <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pickProductToEdit(item) }}>Editar</button>
+                        <button onClick={this.deleteProduct.bind(this, item.id)} className="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
                 </tr>
             )
         })
@@ -32,7 +35,7 @@ class ProductsView extends Component {
         return (
             <section className="col">
                 <h4>Crear Producto</h4>
-                <ProductCreate initialValues={this.props.productToEdit}/>
+                <ProductCreate initialValues={this.props.productToEdit} />
                 <h4>Productos</h4>
                 <table className="table">
                     <thead>

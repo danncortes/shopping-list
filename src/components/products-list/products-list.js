@@ -46,7 +46,7 @@ class ProductsList extends Component{
                         <span className="col-2">{item.price}</span>
                         <span className="col-2">{item.store}</span>
                         <span className="col-2"><input type="number" className="form-control" defaultValue={item.quant} /></span>
-                        <a onClick={(e)=>{this.addProduct(item, e)}} className="btn btn-success btn-sm d-block">Add</a>
+                        <i onClick={(e)=>{this.addProduct(item, e)}} className="fas fa-plus-square fa-2x text-success pointer"></i>
                     </li>
                 )
             })
