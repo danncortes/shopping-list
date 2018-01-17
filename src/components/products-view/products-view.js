@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { fetchProducts, deleteProduct, pickProductToEdit } from '../../actions';
 import ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
 
     componentDidMount() {
+        console.log(this.props)
         this.props.fetchProducts();
     }
 
@@ -64,4 +66,8 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchProducts, deleteProduct, pickProductToEdit })(ProductsView);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ fetchProducts }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, { fetchProducts, deleteProduct, pickProductToEdit })(ProductsView);

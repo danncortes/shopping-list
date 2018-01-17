@@ -19,59 +19,62 @@ export const CLEAR_LIST = 'CLEAR_LIST';
 
 const ROOT_URL = 'http://localhost:3001';
 
-
 /*** PRODUCTS ***/
-export function fetchProducts(){
+export function fetchProducts() {
     const request = axios.get(`${ROOT_URL}/products`);
-    
-    return {
-        type: FETCH_PRODUCTS,
-        payload: request
+
+    return (dispatch) => {
+        request.then(({ data }) => {
+            dispatch({
+                type: FETCH_PRODUCTS,
+                payload: data
+            })
+        })
     }
 }
 
-export function deleteProduct(id){
+export function deleteProduct(id) {
     const request = axios.delete(`${ROOT_URL}/products/${id}`);
 
-    return{
+    return {
         type: DELETE_PRODUCT,
         payload: id
     }
 }
 
-export function createProduct(product){
+export function createProduct(product) {
     const request = axios.post(`${ROOT_URL}/products`, product);
 
-    return{
+    return {
         type: CREATE_PRODUCT,
         payload: request
     }
 }
 
-export function editProduct(id, product){
+export function editProduct(id, product) {
     const request = axios.put(`${ROOT_URL}/products/${id}`, product);
-    return{
+    return {
         type: EDIT_PRODUCT,
         payload: request
     }
 }
 
-export function pickProductToEdit(product){
-    return{
+export function pickProductToEdit(product) {
+    return {
         type: PRODUCT_TO_EDIT,
         payload: product
     }
 }
 
-export function removeProductToEdit(){
-    return{
+export function removeProductToEdit() {
+    return {
         type: REMOVE_PRODUCT_TO_EDIT,
         payload: {}
     }
 }
 
 /*** LISTS ***/
-export function fetchLists(){
+export function fetchLists() {
     const request = axios.get(`${ROOT_URL}/lists`);
 
     return {
@@ -80,7 +83,7 @@ export function fetchLists(){
     }
 }
 
-export function saveList(list){
+export function saveList(list) {
     const request = axios.post(`${ROOT_URL}/lists`, list);
 
     return {
@@ -90,7 +93,7 @@ export function saveList(list){
 }
 
 
-export function deleteList(list){
+export function deleteList(list) {
     const request = axios.delete(`${ROOT_URL}/lists/${list.id}`);
 
     return {
@@ -99,7 +102,7 @@ export function deleteList(list){
     }
 }
 
-export function editList(list){
+export function editList(list) {
 
     return {
         type: EDIT_LIST,
@@ -107,7 +110,7 @@ export function editList(list){
     }
 }
 
-export function updateList(list, id){
+export function updateList(list, id) {
     const request = axios.put(`${ROOT_URL}/lists/${id}`, list);
     return {
         type: UPDATE_LIST,
@@ -115,7 +118,7 @@ export function updateList(list, id){
     }
 }
 
-export function purchaseList(list){
+export function purchaseList(list) {
     const request = axios.put(`${ROOT_URL}/lists/${list.id}`, list);
 
     return {
@@ -124,31 +127,31 @@ export function purchaseList(list){
     }
 }
 
-export function clearList(){
+export function clearList() {
     return {
         type: CLEAR_LIST,
-        payload: { products:[], total: 0, id: ''}
+        payload: { products: [], total: 0, id: '' }
     }
 }
 
 /*** SELECTED PRODUCTS ***/
-export function addProductToList(products, subTotal, id){
+export function addProductToList(products, subTotal, id) {
     return {
         type: ADD_PRODUCT_TO_LIST,
-        payload: {products, subTotal, id}
+        payload: { products, subTotal, id }
     }
 }
 
-export function removeProductFromList(product){
+export function removeProductFromList(product) {
     return {
         type: REMOVE_PRODUCT_FROM_LIST,
-        payload: {product, subTotal: product.subTotal}
+        payload: { product, subTotal: product.subTotal }
     }
 }
 
-export function editProductOnList(product){
+export function editProductOnList(product) {
     return {
         type: EDIT_PRODUCT_ON_LIST,
-        payload: {product, subTotal: product.subTotal}
+        payload: { product, subTotal: product.subTotal }
     }
 }
