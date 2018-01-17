@@ -7,8 +7,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import promise from 'redux-promise';
+//import promise from 'redux-promise';
 import reducers from './reducers';
+import thunk from 'redux-thunk';
 
 
 // import { createStore, applyMiddleware } from 'redux';
@@ -21,10 +22,22 @@ import reducers from './reducers';
 //   applyMiddleware(thunk)
 // );
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const store = applyMiddleware(thunk)(createStore);
+
+// const store = createStore(
+//     (state = {}) => state,
+//     applyMiddleware(thunk)
+// );
+
+// ReactDOM.render(
+//     <Provider store={store} >
+//         <App/>
+//     </Provider>
+// , document.getElementById('root'));
+// registerServiceWorker();
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)} >
+    <Provider store={store(reducers)} >
         <App/>
     </Provider>
 , document.getElementById('root'));

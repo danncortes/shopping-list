@@ -7,8 +7,8 @@ import ProductCreate from '../product-create/product-create';
 class ProductsView extends Component {
 
     componentDidMount() {
-        console.log(this.props)
-        this.props.fetchProducts();
+        
+        console.log(this.props.fetchProducts())
     }
 
     deleteProduct(id) {
@@ -56,6 +56,9 @@ class ProductsView extends Component {
                 </table>
             </section>
         )
+        // return (
+        //     <div></div>
+        // )
     }
 }
 
@@ -66,8 +69,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({ fetchProducts }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps, { fetchProducts, deleteProduct, pickProductToEdit })(ProductsView);
+export default connect(mapStateToProps, { fetchProducts, deleteProduct, pickProductToEdit })(ProductsView);
