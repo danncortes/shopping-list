@@ -7,8 +7,7 @@ import ProductCreate from '../product-create/product-create';
 class ProductsView extends Component {
 
     componentDidMount() {
-        
-        console.log(this.props.fetchProducts())
+        this.props.fetchProducts();
     }
 
     deleteProduct(id) {
@@ -56,9 +55,6 @@ class ProductsView extends Component {
                 </table>
             </section>
         )
-        // return (
-        //     <div></div>
-        // )
     }
 }
 

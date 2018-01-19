@@ -23,14 +23,11 @@ const ROOT_URL = 'http://localhost:3001';
 export function fetchProducts() {
     const request = axios.get(`${ROOT_URL}/products`);
 
-    return (dispatch) => {
-        request.then(({ data }) => {
-            dispatch({
-                type: FETCH_PRODUCTS,
-                payload: data
-            })
-        })
+    return {
+        type: FETCH_PRODUCTS,
+        payload: request
     }
+
 }
 
 export function deleteProduct(id) {
