@@ -11,7 +11,12 @@ import promise from 'redux-promise';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 
-const store = applyMiddleware(promise)(createStore);
+const myLogger = (store) => (next) => (action) => {
+    console.log('Logged action', action);
+    next(action)
+}
+
+const store = applyMiddleware(myLogger,promise)(createStore);
 
 ReactDOM.render(
     <Provider store={store(reducers)} >
