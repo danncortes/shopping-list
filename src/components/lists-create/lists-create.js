@@ -17,7 +17,7 @@ class ListsCreate extends Component {
                     <ProductsList/>
                 </div>
             </section>
-        )
+        );
     }
 }
 
