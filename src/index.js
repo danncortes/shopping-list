@@ -11,16 +11,17 @@ import promise from 'redux-promise';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 
-const myLogger = (store) => (next) => (action) => {
+const myLogger = store => next => (action) => {
     console.log('Logged action', action);
-    next(action)
-}
+    next(action);
+};
 
-const store = applyMiddleware(myLogger,promise)(createStore);
+const store = applyMiddleware(myLogger, thunk)(createStore);
 
 ReactDOM.render(
     <Provider store={store(reducers)} >
         <App/>
     </Provider>
-, document.getElementById('root'));
+    , document.getElementById('root')
+);
 registerServiceWorker();

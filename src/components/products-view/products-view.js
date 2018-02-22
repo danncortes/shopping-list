@@ -5,9 +5,8 @@ import { fetchProducts, deleteProduct, pickProductToEdit } from '../../actions';
 import ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
-
     componentDidMount() {
-        this.props.fetchProducts();
+        this.props.fetch_Products();
     }
 
     deleteProduct(id) {
@@ -15,25 +14,22 @@ class ProductsView extends Component {
     }
 
     renderItems() {
-        return this.props.products.map((product) => {
-            return (
-                <tr key={product.id} className="valign-middle">
-                    <td>{product.name}</td>
-                    <td>{product.price}</td>
-                    <td>{product.store}</td>
-                    <td>
-                        <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pickProductToEdit(product) }}>Editar</button>
-                        
-                        <button onClick={this.deleteProduct.bind(this, product.id)} className="btn btn-danger btn-sm">Eliminar</button>
-                    </td>
-                </tr>
-            )
-        })
+        return this.props.products.map(product => (
+            <tr key={product.id} className="valign-middle">
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>{product.store}</td>
+                <td>
+                    <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pickProductToEdit(product); }}>Editar</button>
+                    <button onClick={this.deleteProduct.bind(this, product.id)} className="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>
+        ));
     }
 
     render() {
         if (this.props.products.length === 0) {
-            return <div>...Loading</div>
+            return <div>...Loading</div>;
         }
         return (
             <section className="col">
@@ -54,15 +50,21 @@ class ProductsView extends Component {
                     </tbody>
                 </table>
             </section>
-        )
+        );
     }
 }
 
 function mapStateToProps(state) {
     return {
         products: state.products,
-        productToEdit: state.productToEdit
-    }
+        productToEdit: state.productToEdit,
+    };
 }
 
-export default connect(mapStateToProps, { fetchProducts, deleteProduct, pickProductToEdit })(ProductsView);
+const mapDispatchToProps = dispatch => ({
+    fetch_Products: () => dispatch(fetchProducts()),
+    deleteProduct: () => dispatch(deleteProduct()),
+    pickProductToEdit: () => dispatch(pickProductToEdit()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsView);

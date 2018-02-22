@@ -11,7 +11,7 @@ export const SAVE_LIST = 'SAVE_LIST';
 export const DELETE_LIST = 'DELETE_LIST';
 export const EDIT_LIST = 'EDIT_LIST';
 export const UPDATE_LIST = 'UPDATE_LIST';
-export const PURCHASE_LIST = 'PURCHASE_LIST'
+export const PURCHASE_LIST = 'PURCHASE_LIST';
 export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 export const REMOVE_PRODUCT_FROM_LIST = 'REMOVE_PRODUCT_FROM_LIST';
 export const EDIT_PRODUCT_ON_LIST = 'EDIT_PRODUCT_ON_LIST';
@@ -19,15 +19,18 @@ export const CLEAR_LIST = 'CLEAR_LIST';
 
 const ROOT_URL = 'http://localhost:3001';
 
-/*** PRODUCTS ***/
+/** * PRODUCTS ** */
 export function fetchProducts() {
     const request = axios.get(`${ROOT_URL}/products`);
 
-    return {
-        type: FETCH_PRODUCTS,
-        payload: request
-    }
-
+    return (dispatch) => {
+        request.then((response) => {
+            dispatch({
+                type: FETCH_PRODUCTS,
+                payload: response,
+            });
+        });
+    };
 }
 
 export function deleteProduct(id) {
@@ -35,8 +38,8 @@ export function deleteProduct(id) {
 
     return {
         type: DELETE_PRODUCT,
-        payload: id
-    }
+        payload: id,
+    };
 }
 
 export function createProduct(product) {
@@ -44,40 +47,40 @@ export function createProduct(product) {
 
     return {
         type: CREATE_PRODUCT,
-        payload: request
-    }
+        payload: request,
+    };
 }
 
 export function editProduct(id, product) {
     const request = axios.put(`${ROOT_URL}/products/${id}`, product);
     return {
         type: EDIT_PRODUCT,
-        payload: request
-    }
+        payload: request,
+    };
 }
 
 export function pickProductToEdit(product) {
     return {
         type: PRODUCT_TO_EDIT,
-        payload: product
-    }
+        payload: product,
+    };
 }
 
 export function removeProductToEdit() {
     return {
         type: REMOVE_PRODUCT_TO_EDIT,
-        payload: {}
-    }
+        payload: {},
+    };
 }
 
-/*** LISTS ***/
+/** * LISTS ** */
 export function fetchLists() {
     const request = axios.get(`${ROOT_URL}/lists`);
 
     return {
         type: FETCH_LISTS,
-        payload: request
-    }
+        payload: request,
+    };
 }
 
 export function saveList(list) {
@@ -85,8 +88,8 @@ export function saveList(list) {
 
     return {
         type: SAVE_LIST,
-        payload: request
-    }
+        payload: request,
+    };
 }
 
 
@@ -95,24 +98,23 @@ export function deleteList(list) {
 
     return {
         type: DELETE_LIST,
-        payload: list.id
-    }
+        payload: list.id,
+    };
 }
 
 export function editList(list) {
-
     return {
         type: EDIT_LIST,
-        payload: list
-    }
+        payload: list,
+    };
 }
 
 export function updateList(list, id) {
     const request = axios.put(`${ROOT_URL}/lists/${id}`, list);
     return {
         type: UPDATE_LIST,
-        payload: request
-    }
+        payload: request,
+    };
 }
 
 export function purchaseList(list) {
@@ -120,35 +122,35 @@ export function purchaseList(list) {
 
     return {
         type: PURCHASE_LIST,
-        payload: request
-    }
+        payload: request,
+    };
 }
 
 export function clearList() {
     return {
         type: CLEAR_LIST,
-        payload: { products: [], total: 0, id: '' }
-    }
+        payload: { products: [], total: 0, id: '' },
+    };
 }
 
-/*** SELECTED PRODUCTS ***/
+/** * SELECTED PRODUCTS ** */
 export function addProductToList(products, subTotal, id) {
     return {
         type: ADD_PRODUCT_TO_LIST,
-        payload: { products, subTotal, id }
-    }
+        payload: { products, subTotal, id },
+    };
 }
 
 export function removeProductFromList(product) {
     return {
         type: REMOVE_PRODUCT_FROM_LIST,
-        payload: { product, subTotal: product.subTotal }
-    }
+        payload: { product, subTotal: product.subTotal },
+    };
 }
 
 export function editProductOnList(product) {
     return {
         type: EDIT_PRODUCT_ON_LIST,
-        payload: { product, subTotal: product.subTotal }
-    }
+        payload: { product, subTotal: product.subTotal },
+    };
 }

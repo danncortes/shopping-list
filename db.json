@@ -1,65 +1,78 @@
 {
-  "products": [{
-    "id": 63449262,
-    "name": "Rustic Rubber Bacon",
-    "price": 404,
-    "store": "Emard, Schumm and Kessler"
-  }, {
-    "id": 79753052,
-    "name": "Sleek Metal Fish",
-    "price": 64,
-    "store": "Wyman LLC"
-  }, {
-    "id": 57228284,
-    "name": "Gorgeous Metal Tuna",
-    "price": 555,
-    "store": "Rippin, Gottlieb and Bahringer"
-  }, {
-    "id": 74648427,
-    "name": "Generic Steel Chair",
-    "price": 396,
-    "store": "Kshlerin - Nikolaus"
-  }, {
-    "id": 13111348,
-    "name": "Refined Soft Pants",
-    "price": 688,
-    "store": "Marks Inc"
-  }, {
-    "id": 49997706,
-    "name": "Fantastic Frozen Table",
-    "price": 115,
-    "store": "Kuphal Inc"
-  }, {
-    "id": 68896315,
-    "name": "Gorgeous Metal Shirt",
-    "price": 17,
-    "store": "Connelly, Kessler and O'Hara"
-  }, {
-    "id": 53979420,
-    "name": "Rustic Soft Sausages",
-    "price": 451,
-    "store": "Moen - Hartmann"
-  }, {
-    "id": 58314094,
-    "name": "Handcrafted Concrete Table",
-    "price": 407,
-    "store": "Becker Group"
-  }],
-  "lists": [{
-    "id": 89774174,
-    "nProducts": 3,
-    "nItems": 42,
-    "cost": 171.14,
-    "date": "Wed Feb 07 2018 13:53:09 GMT-0500 (-05)",
-    "purchased": false,
-    "products": "Fugit numquam reiciendis similique numquam aut distinctio recusandae. Quia quod minus debitis corporis distinctio. Et libero labore repellendus dolores. Sit pariatur fugiat."
-  }, {
-    "id": 97253155,
-    "nProducts": 2,
-    "nItems": 9,
-    "cost": 490.56,
-    "date": "Tue Feb 06 2018 23:22:33 GMT-0500 (-05)",
-    "purchased": false,
-    "products": "Voluptatum ut corporis earum. Nostrum iste explicabo. Impedit molestiae est omnis aspernatur tenetur magnam sint harum. Veniam nemo iure est sed voluptate nihil deleniti aut consectetur. Et ex quo molestiae non quia velit quos. Sunt accusamus qui rerum eligendi mollitia voluptatibus corrupti velit odio."
-  }]
+  "products": [
+    {
+      "id": 63449262,
+      "name": "Rustic Rubber Bacon",
+      "price": 404,
+      "store": "Emard, Schumm and Kessler"
+    },
+    {
+      "id": 79753052,
+      "name": "Sleek Metal Fish",
+      "price": 64,
+      "store": "Wyman LLC"
+    },
+    {
+      "id": 57228284,
+      "name": "Gorgeous Metal Tuna",
+      "price": 555,
+      "store": "Rippin, Gottlieb and Bahringer"
+    },
+    {
+      "id": 74648427,
+      "name": "Generic Steel Chair",
+      "price": 396,
+      "store": "Kshlerin - Nikolaus"
+    },
+    {
+      "id": 13111348,
+      "name": "Refined Soft Pants",
+      "price": 688,
+      "store": "Marks Inc"
+    },
+    {
+      "id": 49997706,
+      "name": "Fantastic Frozen Table",
+      "price": 115,
+      "store": "Kuphal Inc"
+    },
+    {
+      "id": 68896315,
+      "name": "Gorgeous Metal Shirt",
+      "price": 17,
+      "store": "Connelly, Kessler and O'Hara"
+    },
+    {
+      "id": 53979420,
+      "name": "Rustic Soft Sausages",
+      "price": 451,
+      "store": "Moen - Hartmann"
+    },
+    {
+      "id": 58314094,
+      "name": "Handcrafted Concrete Table",
+      "price": 407,
+      "store": "Becker Group"
+    }
+  ],
+  "lists": [
+    {
+      "id": 89774174,
+      "nProducts": 3,
+      "nItems": 42,
+      "cost": 171.14,
+      "date": "Wed Feb 07 2018 13:53:09 GMT-0500 (-05)",
+      "purchased": false,
+      "products": "Fugit numquam reiciendis similique numquam aut distinctio recusandae. Quia quod minus debitis corporis distinctio. Et libero labore repellendus dolores. Sit pariatur fugiat."
+    },
+    {
+      "id": 97253155,
+      "nProducts": 2,
+      "nItems": 9,
+      "cost": 490.56,
+      "date": "Tue Feb 06 2018 23:22:33 GMT-0500 (-05)",
+      "purchased": false,
+      "products": "Voluptatum ut corporis earum. Nostrum iste explicabo. Impedit molestiae est omnis aspernatur tenetur magnam sint harum. Veniam nemo iure est sed voluptate nihil deleniti aut consectetur. Et ex quo molestiae non quia velit quos. Sunt accusamus qui rerum eligendi mollitia voluptatibus corrupti velit odio."
+    }
+  ]
 }

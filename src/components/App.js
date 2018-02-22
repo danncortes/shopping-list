@@ -34,9 +34,9 @@ class App extends Component {
                     </nav>
                     <div className="container-fluid flex-row">
                         <Switch>
-                            <Route path="/lists" component={ListsView} />
+                            {/* <Route path="/lists" component={ListsView} /> */}
                             <Route path="/products" component={ProductsView} />
-                            <Route path="/" component={ListsCreate} />
+                            {/* <Route path="/" component={ListsCreate} /> */}
                         </Switch>
                     </div>
                 </section>
