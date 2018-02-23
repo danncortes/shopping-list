@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { reset, Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
-import { createProduct, editProduct, removeProductToEdit } from '../../actions';
+import { createProduct, editProduct } from '../../actions/products';
+import { removeProductToEdit } from '../../actions';
 
 class ProductCreate extends Component {
-    
     renderField(field) {
-
-        const { meta: { error, touched } } = field
+        const { meta: { error, touched } } = field;
         return (
             <div className="mr-2">
                 <input type="text"
@@ -16,35 +15,33 @@ class ProductCreate extends Component {
                     placeholder={field.placeholder}
                 />
             </div>
-        )
+        );
     }
 
     onSubmit(values) {
         const { reset } = this.props;
         const isEditing = Object.keys(this.props.productToEdit).length !== 0;
-        
-        if(isEditing){
-            if(JSON.stringify(this.props.productToEdit) !== JSON.stringify(values)){
+
+        if (isEditing) {
+            if (JSON.stringify(this.props.productToEdit) !== JSON.stringify(values)) {
                 this.props.editProduct(this.props.productToEdit.id, values).then(() => {
                 });
             }
-            this.props.removeProductToEdit()
-            reset()
-        }
-        else{
+            this.props.removeProductToEdit();
+            reset();
+        } else {
             this.props.createProduct(values).then(() => {
-                reset()
+                reset();
             });
-
         }
     }
 
-    resetForm(){
+    resetForm() {
         const { reset } = this.props;
-        this.props.removeProductToEdit()
-        reset()
+        this.props.removeProductToEdit();
+        reset();
     }
-    
+
     render() {
         const isEditing = Object.keys(this.props.productToEdit).length !== 0;
         const handleSubmit = this.props.handleSubmit;
@@ -65,11 +62,11 @@ class ProductCreate extends Component {
                     name="store"
                     component={this.renderField}
                 />
-                <button type="submit" className="btn btn-primary mr-2">{isEditing  ? 'Editar' : 'Crear'}</button>
-                
+                <button type="submit" className="btn btn-primary mr-2">{isEditing ? 'Editar' : 'Crear'}</button>
+
                 <button onClick={this.resetForm.bind(this)} className="btn btn-warning">Borrar</button>
             </form>
-        )
+        );
     }
 }
 
@@ -82,21 +79,21 @@ function validate(values) {
         errors.price = 'Ingresa un precio';
     }
     if (!values.store) {
-        errors.store = 'Ingresa una tienda'
+        errors.store = 'Ingresa una tienda';
     }
-    //If errors is empty the form is fine to submit
+    // If errors is empty the form is fine to submit
     return errors;
 }
 
 function mapStateToProps(state) {
     return {
-        productToEdit: state.productToEdit
-    }
+        productToEdit: state.productToEdit,
+    };
 }
 
 export default reduxForm({
     validate,
     form: 'ProductCreateForm',
-    enableReinitialize: true
-})(connect(mapStateToProps,  { createProduct, removeProductToEdit, editProduct })(ProductCreate));
+    enableReinitialize: true,
+})(connect(mapStateToProps, { createProduct, removeProductToEdit, editProduct })(ProductCreate));
 

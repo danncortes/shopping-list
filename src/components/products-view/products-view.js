@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchProducts, deleteProduct, pickProductToEdit } from '../../actions';
+import { fetchProducts, deleteProduct } from '../../actions/products';
+import { pickProductToEdit } from '../../actions';
 import ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
@@ -10,17 +10,17 @@ class ProductsView extends Component {
     }
 
     deleteProduct(id) {
-        this.props.deleteProduct(id);
+        this.props.delete_Product(id);
     }
 
     renderItems() {
-        return this.props.products.map(product => (
+        return this.props.products.data.map(product => (
             <tr key={product.id} className="valign-middle">
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.store}</td>
                 <td>
-                    <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pickProductToEdit(product); }}>Editar</button>
+                    <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.props.pick_ProductToEdit(product); }}>Editar</button>
                     <button onClick={this.deleteProduct.bind(this, product.id)} className="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>
@@ -28,8 +28,12 @@ class ProductsView extends Component {
     }
 
     render() {
-        if (this.props.products.length === 0) {
+        console.log(this.props);
+        const { inProgress, hasError } = this.props.products.status.fetch;
+        if (inProgress) {
             return <div>...Loading</div>;
+        } else if (hasError) {
+            return <div>Error Loading data</div>;
         }
         return (
             <section className="col">
@@ -63,8 +67,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
     fetch_Products: () => dispatch(fetchProducts()),
-    deleteProduct: () => dispatch(deleteProduct()),
-    pickProductToEdit: () => dispatch(pickProductToEdit()),
+    delete_Product: id => dispatch(deleteProduct(id)),
+    pick_ProductToEdit: product => dispatch(pickProductToEdit(product)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsView);

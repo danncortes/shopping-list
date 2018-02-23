@@ -1,3 +1,5 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["render"] }] */
+
 import React, { Component } from 'react';
 import './App.css';
 
@@ -6,6 +8,7 @@ import ProductsView from './products-view/products-view';
 import ListsView from './lists-view/lists-view';
 import ListsCreate from './lists-create/lists-create';
 import Router from 'react-router-dom/Router';
+import StatusBar from '../components/status-bar/status.bar';
 
 class App extends Component {
     render() {
@@ -32,6 +35,7 @@ class App extends Component {
                             </ul>
                         </div>
                     </nav>
+                    <StatusBar/>
                     <div className="container-fluid flex-row">
                         <Switch>
                             {/* <Route path="/lists" component={ListsView} /> */}

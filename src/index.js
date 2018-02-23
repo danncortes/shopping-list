@@ -16,12 +16,12 @@ const myLogger = store => next => (action) => {
     next(action);
 };
 
-const store = applyMiddleware(myLogger, thunk)(createStore);
+const store = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
     <Provider store={store(reducers)} >
         <App/>
     </Provider>
-    , document.getElementById('root')
+    , document.getElementById('root'),
 );
 registerServiceWorker();

@@ -1,10 +1,7 @@
 import axios from 'axios';
+import ROOT_URL from './root-url';
 
-export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
-export const DELETE_PRODUCT = 'DELETE_PRODUCT';
-export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const PRODUCT_TO_EDIT = 'PRODUCT_TO_EDIT';
-export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const REMOVE_PRODUCT_TO_EDIT = 'REMOVE_PRODUCT_TO_EDIT';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const SAVE_LIST = 'SAVE_LIST';
@@ -16,48 +13,6 @@ export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 export const REMOVE_PRODUCT_FROM_LIST = 'REMOVE_PRODUCT_FROM_LIST';
 export const EDIT_PRODUCT_ON_LIST = 'EDIT_PRODUCT_ON_LIST';
 export const CLEAR_LIST = 'CLEAR_LIST';
-
-const ROOT_URL = 'http://localhost:3001';
-
-/** * PRODUCTS ** */
-export function fetchProducts() {
-    const request = axios.get(`${ROOT_URL}/products`);
-
-    return (dispatch) => {
-        request.then((response) => {
-            dispatch({
-                type: FETCH_PRODUCTS,
-                payload: response,
-            });
-        });
-    };
-}
-
-export function deleteProduct(id) {
-    const request = axios.delete(`${ROOT_URL}/products/${id}`);
-
-    return {
-        type: DELETE_PRODUCT,
-        payload: id,
-    };
-}
-
-export function createProduct(product) {
-    const request = axios.post(`${ROOT_URL}/products`, product);
-
-    return {
-        type: CREATE_PRODUCT,
-        payload: request,
-    };
-}
-
-export function editProduct(id, product) {
-    const request = axios.put(`${ROOT_URL}/products/${id}`, product);
-    return {
-        type: EDIT_PRODUCT,
-        payload: request,
-    };
-}
 
 export function pickProductToEdit(product) {
     return {
