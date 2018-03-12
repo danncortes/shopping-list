@@ -32,16 +32,11 @@ export function setFetchStatus(request, success, loading, error) {
     return (dispatch) => {
         dispatch(fetchAreLoading(loading, true));
         request.then((response) => {
-            if (response.status !== 200) {
-                throw Error(response.statusText);
-            }
-            dispatch(fetchAreLoading(loading, false));
-            return response;
-        }).then((response) => {
             dispatch(fetchDataSuccess(success, response));
         }).catch(() => {
-            console.log('error?');
             dispatch(fetchHaveError(error, true));
+        }).then(() => {
+            dispatch(fetchAreLoading(loading, false));
         });
     };
 }
@@ -55,15 +50,11 @@ export function fetchDataNotificationStatus(request, isDelete, statusBar, proces
         }));
 
         request.then((response) => {
-            if (response.status !== 200) {
-                throw Error(response.statusText);
-            }
-            return response;
-        }).then((response) => {
             if (isDelete) {
                 dispatch(fetchDataSuccess(success, isDelete));
+            } else {
+                dispatch(fetchDataSuccess(success, response));
             }
-            dispatch(fetchDataSuccess(success, response));
             dispatch(launchStatus(statusBar, {
                 active: true,
                 mode: 'success',

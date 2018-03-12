@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { reset, Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
-import { createProduct, editProduct } from '../../actions/products';
+import { create_product, editProduct } from '../../actions/products';
 import { removeProductToEdit } from '../../actions';
 
 class ProductCreate extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.props.handleSubmit.bind(this);
+    }
     renderField(field) {
         const { meta: { error, touched } } = field;
         return (
@@ -19,6 +23,7 @@ class ProductCreate extends Component {
     }
 
     onSubmit(values) {
+        console.log('prop!', this.props);
         const { reset } = this.props;
         const isEditing = Object.keys(this.props.productToEdit).length !== 0;
 
@@ -30,7 +35,7 @@ class ProductCreate extends Component {
             this.props.removeProductToEdit();
             reset();
         } else {
-            this.props.create_Product(values).then(() => {
+            this.props.create_product(values).then(() => {
                 reset();
             });
         }
@@ -44,9 +49,9 @@ class ProductCreate extends Component {
 
     render() {
         const isEditing = Object.keys(this.props.productToEdit).length !== 0;
-        const handleSubmit = this.props.handleSubmit;
+        /* this.props.handleSubmit(this.onSubmit).bind(this) */
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form-inline mb-4">
+            <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))} className="form-inline mb-4">
                 <Field
                     placeholder="Nombre"
                     name="name"
@@ -92,12 +97,12 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    create_Product: values => dispatch(createProduct(values)),
+    create_product: values => dispatch(create_product(values)),
 });
 
 export default reduxForm({
     validate,
     form: 'ProductCreateForm',
     enableReinitialize: true,
-})(connect(mapStateToProps, { removeProductToEdit, editProduct })(ProductCreate));
+})(connect(mapStateToProps, mapDispatchToProps)(ProductCreate));
 

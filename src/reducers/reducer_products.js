@@ -36,6 +36,7 @@ export default function (state = {
         return state;
 
     case CREATE_PRODUCT_SUCCESS:
+        console.log(action);
         state = { ...state, data: [...action.data.data] };
         return state;
 

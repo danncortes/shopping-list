@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../../actions/products';
+import { fetch_products } from '../../actions/products';
 import { addProductToList, editProductOnList } from '../../actions';
 
 class ProductsList extends Component {
     componentDidMount() {
-        this.props.fetchProducts();
+        this.props.fetch_products();
     }
 
     addProduct(product, e) {
@@ -65,4 +65,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { fetchProducts, addProductToList, editProductOnList })(ProductsList);
+export default connect(mapStateToProps, { fetch_products, addProductToList, editProductOnList })(ProductsList);
