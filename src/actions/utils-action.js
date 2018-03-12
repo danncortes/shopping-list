@@ -40,6 +40,7 @@ export function setFetchStatus(request, success, loading, error) {
         }).then((response) => {
             dispatch(fetchDataSuccess(success, response));
         }).catch(() => {
+            console.log('error?');
             dispatch(fetchHaveError(error, true));
         });
     };
