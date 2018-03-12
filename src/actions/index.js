@@ -1,6 +1,7 @@
 import axios from 'axios';
 import ROOT_URL from './root-url';
 
+export const STATUS_NOTIFICATION = 'STATUS_NOTIFICATION';
 export const PRODUCT_TO_EDIT = 'PRODUCT_TO_EDIT';
 export const REMOVE_PRODUCT_TO_EDIT = 'REMOVE_PRODUCT_TO_EDIT';
 export const FETCH_LISTS = 'FETCH_LISTS';

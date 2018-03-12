@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 class StatusBar extends Component {
     render() {
-        if (this.props.statusBar.active) {
+        console.log(this.props);
+        if (this.props.statusNotification.active) {
             return (
                 <p>
-                    {JSON.stringify(this.props.statusBar.message)}
+                    {JSON.stringify(this.props.statusNotification.message)}
                 </p>
             );
         }
@@ -18,7 +19,7 @@ class StatusBar extends Component {
 
 function mapStateToProps(state) {
     return {
-        statusBar: state.statusBar,
+        statusNotification: state.statusNotification,
     };
 }
 export default connect(mapStateToProps)(StatusBar);

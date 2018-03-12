@@ -30,7 +30,7 @@ class ProductCreate extends Component {
             this.props.removeProductToEdit();
             reset();
         } else {
-            this.props.createProduct(values).then(() => {
+            this.props.create_Product(values).then(() => {
                 reset();
             });
         }
@@ -91,9 +91,13 @@ function mapStateToProps(state) {
     };
 }
 
+const mapDispatchToProps = dispatch => ({
+    create_Product: values => dispatch(createProduct(values)),
+});
+
 export default reduxForm({
     validate,
     form: 'ProductCreateForm',
     enableReinitialize: true,
-})(connect(mapStateToProps, { createProduct, removeProductToEdit, editProduct })(ProductCreate));
+})(connect(mapStateToProps, { removeProductToEdit, editProduct })(ProductCreate));
 

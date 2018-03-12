@@ -1,3 +1,5 @@
+import { setTimeout } from 'timers';
+
 export function fetchAreLoading(type, bool) {
     return {
         type,
@@ -19,57 +21,16 @@ export function fetchDataSuccess(type, data) {
     };
 }
 
-export function launchStatusBar(type, data) {
+export function launchStatus(type, data) {
     return {
         type,
         data,
     };
 }
 
-export function displayStatus(request, isDelete, statusBar, process, success = false, loading = false, error = false) {
-    if (statusBar) {
-        return (dispatch) => {
-            dispatch(launchStatusBar(statusBar, {
-                active: true,
-                mode: 'info',
-                message: `${process} in progress...`,
-            }));
-
-            request.then((response) => {
-                if (response.status !== 200) {
-                    throw Error(response.statusText);
-                }
-
-                dispatch(launchStatusBar(statusBar, {
-                    active: true,
-                    mode: 'error',
-                    message: response.statusText,
-                }));
-                return response;
-            })
-                .then((response) => {
-                    if (isDelete) {
-                        dispatch(fetchDataSuccess(success, isDelete));
-                    }
-                    dispatch(fetchDataSuccess(success, response));
-                    dispatch(launchStatusBar(statusBar, {
-                        active: true,
-                        mode: 'success',
-                        message: `${process} Successfull!.`,
-                    }));
-                })
-                .catch(() => {
-                    dispatch(launchStatusBar(statusBar, {
-                        active: true,
-                        mode: 'error',
-                        message: 'Error',
-                    }));
-                });
-        };
-    }
+export function setFetchStatus(request, success, loading, error) {
     return (dispatch) => {
         dispatch(fetchAreLoading(loading, true));
-
         request.then((response) => {
             if (response.status !== 200) {
                 throw Error(response.statusText);
@@ -77,13 +38,50 @@ export function displayStatus(request, isDelete, statusBar, process, success = f
             dispatch(fetchAreLoading(loading, false));
             return response;
         }).then((response) => {
+            dispatch(fetchDataSuccess(success, response));
+        }).catch(() => {
+            dispatch(fetchHaveError(error, true));
+        });
+    };
+}
+
+export function fetchDataNotificationStatus(request, isDelete, statusBar, process, success) {
+    return (dispatch) => {
+        dispatch(launchStatus(statusBar, {
+            active: true,
+            mode: 'info',
+            message: `${process} in progress...`,
+        }));
+
+        request.then((response) => {
+            if (response.status !== 200) {
+                throw Error(response.statusText);
+            }
+            return response;
+        }).then((response) => {
             if (isDelete) {
                 dispatch(fetchDataSuccess(success, isDelete));
             }
             dispatch(fetchDataSuccess(success, response));
-        })
-            .catch(() => {
-                dispatch(fetchHaveError(error, true));
-            });
+            dispatch(launchStatus(statusBar, {
+                active: true,
+                mode: 'success',
+                message: `${process} Successfull!.`,
+            }));
+        }).catch(() => {
+            dispatch(launchStatus(statusBar, {
+                active: true,
+                mode: 'error',
+                message: `Error on ${process}`,
+            }));
+        }).then(() => {
+            setTimeout(() => {
+                dispatch(launchStatus(statusBar, {
+                    active: false,
+                    mode: '',
+                    message: '',
+                }));
+            }, 2000);
+        });
     };
 }

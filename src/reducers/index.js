@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import ProductReducer from './reducer_products';
-import StatusBar from './reducer_status_bar';
+import StatusNotification from './reducer_status_notification';
 import ListsReducer from './reducer_lists';
 import ProductListReducer from './reducer_listproducts';
 import ProductToEditReducer from './reducer_product_to_edit';
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     selectedProducts: ProductListReducer,
     productToEdit: ProductToEditReducer,
     form: formReducer,
-    statusBar: StatusBar,
+    statusNotification: StatusNotification,
 });
 
 export default rootReducer;
