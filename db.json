@@ -31,22 +31,16 @@
       "store": "Bahringer, Graham and Ebert"
     },
     {
-      "name": "asd",
-      "price": "123",
-      "store": "asd",
+      "name": "cc",
+      "price": "34",
+      "store": "cc",
       "id": 51630266
     },
     {
-      "name": "asd",
-      "price": "234",
-      "store": "asd",
-      "id": 51630267
-    },
-    {
-      "name": "asd",
+      "name": "x",
       "price": "2",
-      "store": "asd",
-      "id": 51630268
+      "store": "xxxx",
+      "id": 51630267
     }
   ],
   "lists": [

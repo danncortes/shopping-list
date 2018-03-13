@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 class StatusBar extends Component {
     render() {
-        console.log(this.props);
         if (this.props.statusNotification.active) {
             return (
                 <p>

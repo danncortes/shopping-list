@@ -5,10 +5,6 @@ import { create_product, editProduct } from '../../actions/products';
 import { removeProductToEdit } from '../../actions';
 
 class ProductCreate extends Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.props.handleSubmit.bind(this);
-    }
     renderField(field) {
         const { meta: { error, touched } } = field;
         return (
@@ -23,7 +19,6 @@ class ProductCreate extends Component {
     }
 
     onSubmit(values) {
-        console.log('prop!', this.props);
         const { reset } = this.props;
         const isEditing = Object.keys(this.props.productToEdit).length !== 0;
 
@@ -35,9 +30,8 @@ class ProductCreate extends Component {
             this.props.removeProductToEdit();
             reset();
         } else {
-            this.props.create_product(values).then(() => {
-                reset();
-            });
+            this.props.onCreateProduct(values);
+            reset();
         }
     }
 
@@ -48,10 +42,12 @@ class ProductCreate extends Component {
     }
 
     render() {
+        console.log('product-view', this.props.products);
         const isEditing = Object.keys(this.props.productToEdit).length !== 0;
         /* this.props.handleSubmit(this.onSubmit).bind(this) */
+        const { handleSubmit } = this.props;
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))} className="form-inline mb-4">
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form-inline mb-4">
                 <Field
                     placeholder="Nombre"
                     name="name"
@@ -92,12 +88,14 @@ function validate(values) {
 
 function mapStateToProps(state) {
     return {
+        products: state.products,
         productToEdit: state.productToEdit,
     };
 }
 
 const mapDispatchToProps = dispatch => ({
-    create_product: values => dispatch(create_product(values)),
+    onCreateProduct: values => dispatch(create_product(values)),
+    removeProductToEdit: () => dispatch(removeProductToEdit()),
 });
 
 export default reduxForm({
