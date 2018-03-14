@@ -16,9 +16,10 @@ export default function (state = {
         hasError: false,
     },
 }, action) {
+    let products = [];
     switch (action.type) {
     case FETCH_PRODUCTS_SUCCESS:
-        const products = action.data.data.map(product => (
+        products = action.data.data.map(product => (
             {
                 ...product,
                 isOnEdit: false,
@@ -48,28 +49,29 @@ export default function (state = {
         return state;
 
     case PRODUCT_TO_EDIT:
-        const products_with_edit = state.data.map((product) => {
+        products = state.data.map((product) => {
             product.isOnEdit = product.id === action.payload;
             return product;
         });
-        state = { ...state, data: [...products_with_edit] };
+        state = { ...state, data: [...products] };
         return state;
 
     case REMOVE_PRODUCT_TO_EDIT:
-        const products_without_edit = state.data.map((product) => {
+        products = state.data.map((product) => {
             product.isOnEdit = false;
             return product;
         });
-        state = { ...state, data: [...products_without_edit] };
+        state = { ...state, data: [...products] };
         return state;
+
     case UPDATE_PRODUCT_SUCCESS:
-        const products_updated = state.data.filter(item => item.id !== action.data.data.id);
-        const updated_product = {
+        products = state.data.filter(item => item.id !== action.data.data.id);
+        const updatedProduct = {
             ...action.data.data,
             isOnEdit: false,
             isSelected: false,
         };
-        state = { ...state, data: [...products_updated, updated_product] };
+        state = { ...state, data: [...products, updatedProduct] };
         return state;
     default:
         return state;
