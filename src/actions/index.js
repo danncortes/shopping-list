@@ -2,8 +2,6 @@ import axios from 'axios';
 import ROOT_URL from './root-url';
 
 export const STATUS_NOTIFICATION = 'STATUS_NOTIFICATION';
-export const PRODUCT_TO_EDIT = 'PRODUCT_TO_EDIT';
-export const REMOVE_PRODUCT_TO_EDIT = 'REMOVE_PRODUCT_TO_EDIT';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const SAVE_LIST = 'SAVE_LIST';
 export const DELETE_LIST = 'DELETE_LIST';
@@ -14,20 +12,6 @@ export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 export const REMOVE_PRODUCT_FROM_LIST = 'REMOVE_PRODUCT_FROM_LIST';
 export const EDIT_PRODUCT_ON_LIST = 'EDIT_PRODUCT_ON_LIST';
 export const CLEAR_LIST = 'CLEAR_LIST';
-
-export function pickProductToEdit(product) {
-    return {
-        type: PRODUCT_TO_EDIT,
-        payload: product,
-    };
-}
-
-export function removeProductToEdit() {
-    return {
-        type: REMOVE_PRODUCT_TO_EDIT,
-        payload: {},
-    };
-}
 
 /** * LISTS ** */
 export function fetchLists() {

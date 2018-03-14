@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { reset, Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
-import { create_product, editProduct } from '../../actions/products';
-import { removeProductToEdit } from '../../actions';
+import { create_product, edit_product, remove_product_to_edit } from '../../actions/products';
 
 class ProductCreate extends Component {
     renderField(field) {
@@ -18,16 +17,19 @@ class ProductCreate extends Component {
         );
     }
 
+    isEditing() {
+        return Object.keys(this.props.initialValues).length !== 0;
+    }
+
     onSubmit(values) {
         const { reset } = this.props;
-        const isEditing = Object.keys(this.props.productToEdit).length !== 0;
+        const isEditing = this.isEditing();
 
         if (isEditing) {
-            if (JSON.stringify(this.props.productToEdit) !== JSON.stringify(values)) {
-                this.props.editProduct(this.props.productToEdit.id, values).then(() => {
-                });
+            if (JSON.stringify(this.props.initialValues) !== JSON.stringify(values)) {
+                this.props.onEditProduct(this.props.initialValues.id, values);
             }
-            this.props.removeProductToEdit();
+            this.props.onRemoveProductToEdit();
             reset();
         } else {
             this.props.onCreateProduct(values);
@@ -37,14 +39,12 @@ class ProductCreate extends Component {
 
     resetForm() {
         const { reset } = this.props;
-        this.props.removeProductToEdit();
+        this.props.onRemoveProductToEdit();
         reset();
     }
 
     render() {
-        console.log('product-view', this.props.products);
-        const isEditing = Object.keys(this.props.productToEdit).length !== 0;
-        /* this.props.handleSubmit(this.onSubmit).bind(this) */
+        const isEditing = this.isEditing();
         const { handleSubmit } = this.props;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form-inline mb-4">
@@ -86,16 +86,14 @@ function validate(values) {
     return errors;
 }
 
-function mapStateToProps(state) {
-    return {
-        products: state.products,
-        productToEdit: state.productToEdit,
-    };
+function mapStateToProps() {
+    return {};
 }
 
 const mapDispatchToProps = dispatch => ({
     onCreateProduct: values => dispatch(create_product(values)),
-    removeProductToEdit: () => dispatch(removeProductToEdit()),
+    onRemoveProductToEdit: () => dispatch(remove_product_to_edit()),
+    onEditProduct: (id, values) => dispatch(edit_product(id, values)),
 });
 
 export default reduxForm({

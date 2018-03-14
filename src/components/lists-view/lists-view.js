@@ -17,7 +17,6 @@ class ListsView extends Component {
     purchaseListClick(list) {
         list.purchased = true;
         this.props.purchaseList(list);
-        console.log();
     }
 
     renderItems() {

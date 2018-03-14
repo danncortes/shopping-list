@@ -18,3 +18,11 @@ export function createProduct(product) {
         .then(response => response)
         .catch((error) => { throw Error(error); });
 }
+
+export function updateProduct(id, product) {
+    return axios.put(`${ROOT_URL}/products/${id}`, product)
+        .then(response => response)
+        .catch((error) => {
+            throw Error(error);
+        });
+}

@@ -4,6 +4,9 @@ import {
     FETCH_PRODUCTS_ERROR,
     DELETE_PRODUCT_SUCCESS,
     CREATE_PRODUCT_SUCCESS,
+    PRODUCT_TO_EDIT,
+    REMOVE_PRODUCT_TO_EDIT,
+    UPDATE_PRODUCT_SUCCESS,
 } from '../actions/products';
 
 export default function (state = {
@@ -17,7 +20,14 @@ export default function (state = {
 }, action) {
     switch (action.type) {
     case FETCH_PRODUCTS_SUCCESS:
-        state = { ...state, data: [...action.data.data] };
+        const products = action.data.data.map(product => (
+            {
+                ...product,
+                isOnEdit: false,
+                isSelected: false,
+            }
+        ));
+        state = { ...state, data: [...products] };
         return state;
 
     case FETCH_PRODUCTS_LOADING:
@@ -39,10 +49,30 @@ export default function (state = {
         state = { ...state, data: [...state.data, action.data.data] };
         return state;
 
-    // case EDIT_PRODUCT:
-    //     state = state.filter(item => item.id !== action.payload.data.id);
-    //     state = [...state, action.payload.data];
-    //     return state;
+    case PRODUCT_TO_EDIT:
+        const products_with_edit = state.data.map((product) => {
+            product.isOnEdit = product.id === action.payload;
+            return product;
+        });
+        state = { ...state, data: [...products_with_edit] };
+        return state;
+
+    case REMOVE_PRODUCT_TO_EDIT:
+        const products_without_edit = state.data.map((product) => {
+            product.isOnEdit = false;
+            return product;
+        });
+        state = { ...state, data: [...products_without_edit] };
+        return state;
+    case UPDATE_PRODUCT_SUCCESS:
+        const products_updated = state.data.filter(item => item.id !== action.data.data.id);
+        const updated_product = {
+            ...action.data.data,
+            isOnEdit: false,
+            isSelected: false,
+        };
+        state = { ...state, data: [...products_updated, updated_product] };
+        return state;
     default:
         return state;
     }

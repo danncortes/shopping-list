@@ -2,8 +2,8 @@
   "products": [
     {
       "id": 44286891,
-      "name": "Fantastic Metal Shirt",
-      "price": 833,
+      "name": "Fantastic Metal Shirtttt",
+      "price": "8332",
       "store": "Blanda Group"
     },
     {
@@ -21,26 +21,20 @@
     {
       "id": 51630265,
       "name": "Incredible Wooden Pizza",
-      "price": 887,
+      "price": "8871",
       "store": "Smitham - O'Reilly"
     },
     {
-      "id": 50640417,
-      "name": "Ergonomic Concrete Keyboard",
-      "price": 420,
-      "store": "Bahringer, Graham and Ebert"
+      "id": 51630266,
+      "name": "asdsdfsdf",
+      "price": "3411",
+      "store": "asd"
     },
     {
-      "name": "cc",
-      "price": "34",
-      "store": "cc",
-      "id": 51630266
-    },
-    {
-      "name": "x",
-      "price": "2",
-      "store": "xxxx",
-      "id": 51630267
+      "id": 51630267,
+      "name": "asd",
+      "price": "1123",
+      "store": "sdfsdf123"
     }
   ],
   "lists": [
