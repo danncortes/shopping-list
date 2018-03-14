@@ -1,77 +1,77 @@
-var schema = {
-    "type": "object",
-    "properties": {
-        "products": {
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 10,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "number",
-                        "unique": true,
-                        "minimum": 1
+let schema = {
+    'type': 'object',
+    'properties': {
+        products: {
+            type: 'array',
+            'minItems': 5,
+            maxItems: 15,
+            items: {
+                'type': 'object',
+                properties: {
+                    id: {
+                        'type': 'number',
+                        unique: true,
+                        'minimum': 1,
                     },
-                    "name": {
-                        "type": "string",
-                        "faker": "commerce.productName"
+                    name: {
+                        type: 'string',
+                        'faker': 'commerce.productName',
                     },
-                    "price": {
-                        "type": "number",
-                        "faker": "commerce.price"
+                    price: {
+                        type: 'number',
+                        faker: 'commerce.price',
                     },
-                    "store": {
-                        "type": "string",
-                        "faker": "company.companyName"
-                    }
+                    store: {
+                        'type': 'string',
+                        'faker': 'company.companyName',
+                    },
                 },
-                "required": ["id", "name", "price", "store"]
-            }
+                required: ['id', 'name', 'price', 'store'],
+            },
         },
-        "lists": {
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 4,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "number",
-                        "unique": true,
-                        "minimum": 1
+        'lists': {
+            type: 'array',
+            'minItems': 5,
+            'maxItems': 10,
+            'items': {
+                'type': 'object',
+                properties: {
+                    id: {
+                        'type': 'number',
+                        unique: true,
+                        minimum: 1,
                     },
-                    "nProducts": {
-                        "type": "number",
-                        "minimum": 1,
-                        "maximum": 10
+                    nProducts: {
+                        type: 'number',
+                        'minimum': 1,
+                        maximum: 10,
                     },
-                    "nItems": {
-                        "type": "number",
-                        "minimum": 1,
-                        "maximum": 50
+                    'nItems': {
+                        'type': 'number',
+                        'minimum': 1,
+                        maximum: 50,
                     },
-                    "cost": {
-                        "type": "number",
-                        "faker": "finance.amount"
+                    cost: {
+                        'type': 'number',
+                        faker: 'finance.amount',
                     },
-                    "date": {
-                        "type": "string",
-                        "faker": "date.recent"
+                    date: {
+                        type: 'string',
+                        'faker': 'date.recent',
                     },
-                    "purchased": {
-                        "type": "boolean"
+                    'purchased': {
+                        'type': 'boolean',
                     },
-                    "products": {
-                        "type": "text",
-                        "faker": "lorem.paragraph"
-                    }
+                    products: {
+                        type: 'text',
+                        faker: 'lorem.paragraph',
+                    },
                 },
-                "required": ["id", "nProducts", "nItems", "cost", "date", "purchased", "products"]
-            }
-        }
+                'required': ['id', 'nProducts', 'nItems', 'cost', 'date', 'purchased', 'products'],
+            },
+        },
     },
-    "required": ["products", "lists"]
+    required: ['products', 'lists'],
 };
 
 module.exports = schema;

@@ -15,36 +15,36 @@ export const UPDATE_PRODUCT_SUCCESS = 'UPDATE_PRODUCT_SUCCESS';
 export const PRODUCT_TO_EDIT = 'PRODUCT_TO_EDIT';
 export const REMOVE_PRODUCT_TO_EDIT = 'REMOVE_PRODUCT_TO_EDIT';
 
-export function fetch_products() {
+export function fetchProductsAction() {
     const request = getProducts();
     return setFetchStatus(request, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_LOADING, FETCH_PRODUCTS_ERROR);
 }
 
-export function delete_product(id) {
+export function deleteProductAction(id) {
     const request = deleteProduct(id);
     return fetchDataNotificationStatus(request, id, STATUS_NOTIFICATION, 'Delete', DELETE_PRODUCT_SUCCESS);
 }
 
-export function create_product(product) {
+export function createProductAction(product) {
     const request = createProduct(product);
     return fetchDataNotificationStatus(request, false, STATUS_NOTIFICATION, 'Create', CREATE_PRODUCT_SUCCESS);
 }
 
-export function select_product_to_edit(id) {
+export function selectProductToEditAction(id) {
     return {
         type: PRODUCT_TO_EDIT,
         payload: id,
     };
 }
 
-export function remove_product_to_edit() {
+export function removeProductToEditAction() {
     return {
         type: REMOVE_PRODUCT_TO_EDIT,
         payload: {},
     };
 }
 
-export function edit_product(id, product) {
+export function editProductAction(id, product) {
     const request = updateProduct(id, product);
     return fetchDataNotificationStatus(request, false, STATUS_NOTIFICATION, 'Update', UPDATE_PRODUCT_SUCCESS);
 }

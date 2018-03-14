@@ -25,7 +25,7 @@ export default function (state = { products: [], total: 0, id: '' }, action) {
         return state;
 
     case REMOVE_PRODUCT_FROM_LIST:
-        var products = state.products.filter((item) => item.id !== action.payload.product.id);
+        var products = state.products.filter(item => item.id !== action.payload.product.id);
         state = {
             products,
             total: state.total - action.payload.subTotal,

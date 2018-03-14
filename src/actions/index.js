@@ -32,16 +32,6 @@ export function saveList(list) {
     };
 }
 
-
-export function deleteList(list) {
-    const request = axios.delete(`${ROOT_URL}/lists/${list.id}`);
-
-    return {
-        type: DELETE_LIST,
-        payload: list.id,
-    };
-}
-
 export function editList(list) {
     return {
         type: EDIT_LIST,

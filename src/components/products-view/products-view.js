@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetch_products, delete_product, select_product_to_edit } from '../../actions/products';
+import { fetchProductsAction, deleteProductAction, selectProductToEditAction } from '../../actions/products';
 import ProductCreate from '../product-create/product-create';
 
 class ProductsView extends Component {
@@ -11,19 +11,19 @@ class ProductsView extends Component {
     productToEdit() {
         const initialValues = {};
         let product = '';
-        const { inProgress, hasError } = this.props.products.status.fetch;
+        const { inProgress, hasError } = this.props.products.status;
         if (!(inProgress && hasError)) {
             product = this.props.products.data.find(product => product.isOnEdit === true);
-            if (product) {
-                product = {
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    store: product.store,
-                };
-            }
         }
-        return product || initialValues;
+        if (product) {
+            return {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                store: product.store,
+            };
+        }
+        return initialValues;
     }
 
     renderItems() {
@@ -42,7 +42,7 @@ class ProductsView extends Component {
 
     render() {
         const productToEdit = this.productToEdit();
-        const { inProgress, hasError } = this.props.products.status.fetch;
+        const { inProgress, hasError } = this.props.products.status;
         if (inProgress) {
             return <div>...Loading</div>;
         } else if (hasError) {
@@ -78,9 +78,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onFetchProducts: () => dispatch(fetch_products()),
-    onDeleteProduct: id => dispatch(delete_product(id)),
-    onSelectProductToEdit: id => dispatch(select_product_to_edit(id)),
+    onFetchProducts: () => dispatch(fetchProductsAction()),
+    onDeleteProduct: id => dispatch(deleteProductAction(id)),
+    onSelectProductToEdit: id => dispatch(selectProductToEditAction(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsView);

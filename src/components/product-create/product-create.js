@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { reset, Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
-import { create_product, edit_product, remove_product_to_edit } from '../../actions/products';
+import { createProductAction, editProductAction, removeProductToEditAction } from '../../actions/products';
 
 class ProductCreate extends Component {
     renderField(field) {
@@ -91,9 +91,9 @@ function mapStateToProps() {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onCreateProduct: values => dispatch(create_product(values)),
-    onRemoveProductToEdit: () => dispatch(remove_product_to_edit()),
-    onEditProduct: (id, values) => dispatch(edit_product(id, values)),
+    onCreateProduct: values => dispatch(createProductAction(values)),
+    onRemoveProductToEdit: () => dispatch(removeProductToEditAction()),
+    onEditProduct: (id, values) => dispatch(editProductAction(id, values)),
 });
 
 export default reduxForm({

@@ -38,7 +38,7 @@ class App extends Component {
                     <StatusBar/>
                     <div className="container-fluid flex-row">
                         <Switch>
-                            {/* <Route path="/lists" component={ListsView} /> */}
+                            <Route path="/lists" component={ListsView} />
                             <Route path="/products" component={ProductsView} />
                             {/* <Route path="/" component={ListsCreate} /> */}
                         </Switch>

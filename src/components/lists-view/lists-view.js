@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchLists, deleteList, purchaseList, addProductToList, clearList } from '../../actions';
+import { fetchListsAction, deleteListAction, updateListAction } from '../../actions/lists';
 
 class ListsView extends Component {
     componentDidMount() {
-        this.props.fetchLists();
+        this.props.onFetchLists();
     }
 
     editList(list) {
@@ -14,24 +14,25 @@ class ListsView extends Component {
         this.props.history.push('/');
     }
 
-    purchaseListClick(list) {
+    onPurchaseList(list) {
+        const { id } = list;
         list.purchased = true;
-        this.props.purchaseList(list);
+        this.props.onUpdateList(id, list);
     }
 
     renderItems() {
-        const lists = this.props.lists.map(list => (
+        const lists = this.props.lists.data.map(list => (
             <tr key={list.id} className="valign-middle">
                 <td>{list.date}</td>
                 <td>{list.cost}</td>
                 <td>{list.nProducts}</td>
                 <td>{list.nItems}</td>
                 <td>
-                    <button className="btn btn-warning btn-sm mr-2" onClick={() => { this.editList(list); }} style={{ display: list.purchased ? 'none' : 'initial' }}>Editar</button>
+                    <button className="btn btn-warning btn-sm mr-2" onClick={this.editList.bind(this, list)} style={{ display: list.purchased ? 'none' : 'initial' }}>Editar</button>
 
-                    <button className="btn btn-danger btn-sm mr-2" onClick={this.props.deleteList.bind(this, list)}>Eliminar</button>
+                    <button className="btn btn-danger btn-sm mr-2" onClick={this.props.onDeleteList.bind(this, list.id)}>Eliminar</button>
 
-                    <button className={`btn ${list.purchased ? '' : 'btn-success'} btn-sm`} onClick={this.purchaseListClick.bind(this, list)} disabled={ list.purchased ? 'disabled' : '' }>{list.purchased ? 'Comprada' : 'Comprar'}</button>
+                    <button className={`btn ${list.purchased ? '' : 'btn-success'} btn-sm`} onClick={this.onPurchaseList.bind(this, list)} disabled={ list.purchased ? 'disabled' : '' }>{list.purchased ? 'Comprada' : 'Comprar'}</button>
                 </td>
             </tr>
         ));
@@ -40,6 +41,12 @@ class ListsView extends Component {
     }
 
     render() {
+        const { inProgress, hasError } = this.props.lists.status;
+        if (inProgress) {
+            return <div>...Loading</div>;
+        } else if (hasError) {
+            return <div>Error Loading data</div>;
+        }
         return (
             <table className="table">
                 <thead>
@@ -62,10 +69,13 @@ class ListsView extends Component {
 function mapStateToProps(state) {
     return {
         lists: state.lists,
-        selectedProducts: state.selectedProducts,
     };
 }
 
-export default connect(mapStateToProps, {
-    fetchLists, deleteList, purchaseList, addProductToList, clearList,
-})(ListsView);
+const mapDispatchToProps = dispatch => ({
+    onFetchLists: () => dispatch(fetchListsAction()),
+    onDeleteList: id => dispatch(deleteListAction(id)),
+    onUpdateList: (id, list) => dispatch(updateListAction(id, list)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListsView);

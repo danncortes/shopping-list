@@ -12,10 +12,8 @@ import {
 export default function (state = {
     data: [],
     status: {
-        fetch: {
-            inProgress: false,
-            hasError: false,
-        },
+        inProgress: false,
+        hasError: false,
     },
 }, action) {
     switch (action.type) {
@@ -32,12 +30,12 @@ export default function (state = {
 
     case FETCH_PRODUCTS_LOADING:
         state = { ...state };
-        state.status.fetch.inProgress = action.inProgress;
+        state.status.inProgress = action.inProgress;
         return state;
 
     case FETCH_PRODUCTS_ERROR:
         state = { ...state };
-        state.status.fetch.hasError = action.hasError;
+        state.status.hasError = action.hasError;
         return state;
 
     case DELETE_PRODUCT_SUCCESS:
