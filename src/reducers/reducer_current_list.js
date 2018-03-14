@@ -1,4 +1,5 @@
-import { ADD_PRODUCT_TO_LIST, CLEAR_LIST, REMOVE_PRODUCT_FROM_LIST, EDIT_PRODUCT_ON_LIST } from '../actions';
+import { ADD_PRODUCT_TO_LIST } from '../actions/current-list';
+import { CLEAR_LIST, REMOVE_PRODUCT_FROM_LIST, EDIT_PRODUCT_ON_LIST } from '../actions';
 
 export default function (state = { products: [], total: 0, id: '' }, action) {
     switch (action.type) {
@@ -11,7 +12,7 @@ export default function (state = { products: [], total: 0, id: '' }, action) {
         return state;
 
     case EDIT_PRODUCT_ON_LIST:
-        var products = state.products.map((item) => {
+        var products = state.products.data.map((item) => {
             if (item.id === action.payload.product.id) {
                 item.quant += action.payload.product.quant;
             }

@@ -40,7 +40,7 @@ class App extends Component {
                         <Switch>
                             <Route path="/lists" component={ListsView} />
                             <Route path="/products" component={ProductsView} />
-                            {/* <Route path="/" component={ListsCreate} /> */}
+                            <Route path="/" component={ListsCreate} />
                         </Switch>
                     </div>
                 </section>

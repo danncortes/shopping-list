@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchProductsAction } from '../../actions/products';
+import { addProductToListAction } from '../../actions/current-list';
 import { addProductToList, editProductOnList } from '../../actions';
 
 class ProductsList extends Component {
     componentDidMount() {
-        this.props.fetchProductsAction();
+        this.props.onFetchProducts();
     }
 
     addProduct(product, e) {
@@ -21,19 +23,25 @@ class ProductsList extends Component {
             store: product.store,
         };
 
-        const foundProduct = this.props.selectedProducts.products.filter(item => item.id === product.id);
+        const foundProduct = this.props.currentList.products.filter(item => item.id === product.id);
 
         if (foundProduct.length > 0) {
             this.props.editProductOnList(newProd);
         } else {
-            this.props.addProductToList([newProd], newProd.subTotal, this.props.selectedProducts.id);
+            this.props.onAddProductToList([newProd], newProd.subTotal, this.props.currentList.id);
         }
     }
 
     renderItems() {
-        if (this.props.products.length !== 0) {
+        const { inProgress, hasError } = this.props.products.status;
+        if (inProgress) {
+            return <div>...Loading</div>;
+        } else if (hasError) {
+            return <div>Error Loading data</div>;
+        }
+        if (this.props.products.data.length !== 0) {
             let products = [];
-            products = this.props.products.map((product) => {
+            products = this.props.products.data.map((product) => {
                 product.quant = 1;
                 return product;
             });
@@ -47,9 +55,15 @@ class ProductsList extends Component {
                 </li>
             ));
         }
+        return (
+            <div>
+                There are no products, create a new one here: <Link className="btn btn-success" to={'/products'}>Products</Link>
+            </div>
+        );
     }
 
     render() {
+        console.log(this.props);
         return (
             <ul className="list-group">
                 {this.renderItems()}
@@ -61,8 +75,13 @@ class ProductsList extends Component {
 function mapStateToProps(state) {
     return {
         products: state.products,
-        selectedProducts: state.selectedProducts,
+        currentList: state.currentList,
     };
 }
 
-export default connect(mapStateToProps, { fetchProductsAction, addProductToList, editProductOnList })(ProductsList);
+const mapDispatchToProps = dispatch => ({
+    onFetchProducts: () => dispatch(fetchProductsAction()),
+    onAddProductToList: (products, subTotal, id) => dispatch(addProductToListAction(products, subTotal, id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);

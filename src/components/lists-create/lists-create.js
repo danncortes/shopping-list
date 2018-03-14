@@ -9,7 +9,7 @@ class ListsCreate extends Component {
                 <div className="col-5">
                     <h4 className="mb-3">Crear Lista de Compras</h4>
                     <div className="box-list">
-                        <ProductsSelectedList/>
+                        {/*<ProductsSelectedList/> */}
                     </div>
                 </div>
                 <div className="col-7">

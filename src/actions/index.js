@@ -8,7 +8,6 @@ export const DELETE_LIST = 'DELETE_LIST';
 export const EDIT_LIST = 'EDIT_LIST';
 export const UPDATE_LIST = 'UPDATE_LIST';
 export const PURCHASE_LIST = 'PURCHASE_LIST';
-export const ADD_PRODUCT_TO_LIST = 'ADD_PRODUCT_TO_LIST';
 export const REMOVE_PRODUCT_FROM_LIST = 'REMOVE_PRODUCT_FROM_LIST';
 export const EDIT_PRODUCT_ON_LIST = 'EDIT_PRODUCT_ON_LIST';
 export const CLEAR_LIST = 'CLEAR_LIST';
@@ -60,14 +59,6 @@ export function clearList() {
     return {
         type: CLEAR_LIST,
         payload: { products: [], total: 0, id: '' },
-    };
-}
-
-/** * SELECTED PRODUCTS ** */
-export function addProductToList(products, subTotal, id) {
-    return {
-        type: ADD_PRODUCT_TO_LIST,
-        payload: { products, subTotal, id },
     };
 }
 

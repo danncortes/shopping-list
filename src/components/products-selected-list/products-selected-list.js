@@ -4,34 +4,32 @@ import { connect } from 'react-redux';
 import { saveList, clearList, removeProductFromList, updateList } from '../../actions';
 
 class ProductsSelectedList extends Component {
-
     postList() {
         const products = this.props.selectedProducts.products;
 
         function sumItems(arr, index) {
-            var total = 0;
+            let total = 0;
             arr.forEach((item) => {
                 total += item[index];
-            })
+            });
             return total;
         }
-        var nItems = sumItems(products, 'quant');
+        let nItems = sumItems(products, 'quant');
 
         const list = {
-            nItems: nItems,
+            nItems,
             nProducts: products.length,
             cost: this.props.selectedProducts.total,
             date: moment().format(),
             purchased: false,
-            products: JSON.stringify(products)
-        }
+            products: JSON.stringify(products),
+        };
 
         if (this.props.selectedProducts.id === '') {
             this.props.saveList(list).then(() => {
                 this.props.clearList();
             });
-        }
-        else {
+        } else {
             this.props.updateList(list, this.props.selectedProducts.id).then(() => {
                 this.props.clearList();
             });
@@ -48,7 +46,7 @@ class ProductsSelectedList extends Component {
                 <li className="p-3 text-center">Agrega productos a la lista</li>
             )
         }
-        else {
+        
             return this.props.selectedProducts.products.map((product) => {
                 return (
                     <li key={product.id} className="item">
@@ -62,14 +60,13 @@ class ProductsSelectedList extends Component {
                     </li>
                 )
             })
-        }
+        
     }
 
     render() {
+        let submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <button className="btn btn-success btn-sm mr-2" onClick={this.postList.bind(this)}>{this.props.selectedProducts.id === '' ? <i className="fas fa-save"> Guardar</i> : 'Editar'}</button>;
 
-        var submitBtn = this.props.selectedProducts.products.length === 0 ? '' : <button className="btn btn-success btn-sm mr-2" onClick={this.postList.bind(this)}>{this.props.selectedProducts.id === '' ? <i className="fas fa-save"> Guardar</i> : 'Editar'}</button>;
-
-        var cancelBtn = this.props.selectedProducts.id === '' ? '' : <button className="btn btn-danger btn-sm" onClick={this.cancelEdit.bind(this)}>Cancel</button>;
+        let cancelBtn = this.props.selectedProducts.id === '' ? '' : <button className="btn btn-danger btn-sm" onClick={this.cancelEdit.bind(this)}>Cancel</button>;
 
         return (
             <section>
@@ -91,14 +88,16 @@ class ProductsSelectedList extends Component {
                     </div>
                 </div>
             </section>
-        )
+        );
     }
 }
 
 function mapStateToProps(state) {
     return {
-        selectedProducts: state.selectedProducts
-    }
+        selectedProducts: state.selectedProducts,
+    };
 }
 
-export default connect(mapStateToProps, { saveList, clearList, removeProductFromList, updateList })(ProductsSelectedList);
+export default connect(mapStateToProps, {
+ saveList, clearList, removeProductFromList, updateList 
+})(ProductsSelectedList);
