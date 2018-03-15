@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchListsAction, deleteListAction, updateListAction } from '../../actions/lists';
+import { clearCurrentListAction, addProductToListAction } from '../../actions/current-list';
 
 class ListsView extends Component {
     componentDidMount() {
@@ -8,9 +9,9 @@ class ListsView extends Component {
     }
 
     editList(list) {
-        this.props.clearList();
+        this.props.onClearCurrentList();
         const products = JSON.parse(list.products);
-        this.props.addProductToList(products, list.cost, list.id);
+        this.props.onAddProductToList(products, list.cost, list.id, list.purchased);
         this.props.history.push('/');
     }
 
@@ -28,7 +29,9 @@ class ListsView extends Component {
                 <td>{list.nProducts}</td>
                 <td>{list.nItems}</td>
                 <td>
-                    <button className="btn btn-warning btn-sm mr-2" onClick={this.editList.bind(this, list)} style={{ display: list.purchased ? 'none' : 'initial' }}>Editar</button>
+                    <button className="btn btn-warning btn-sm mr-2" onClick={this.editList.bind(this, list)}>
+                        {list.purchased ? 'Ver' : 'Editar'}
+                    </button>
 
                     <button className="btn btn-danger btn-sm mr-2" onClick={this.props.onDeleteList.bind(this, list.id)}>Eliminar</button>
 
@@ -76,6 +79,8 @@ const mapDispatchToProps = dispatch => ({
     onFetchLists: () => dispatch(fetchListsAction()),
     onDeleteList: id => dispatch(deleteListAction(id)),
     onUpdateList: (id, list) => dispatch(updateListAction(id, list)),
+    onClearCurrentList: () => dispatch(clearCurrentListAction()),
+    onAddProductToList: (products, subTotal, id, purchased) => dispatch(addProductToListAction(products, subTotal, id, purchased)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListsView);
