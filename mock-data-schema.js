@@ -1,73 +1,73 @@
-let schema = {
-    'type': 'object',
-    'properties': {
+const schema = {
+    type: 'object',
+    properties: {
         products: {
             type: 'array',
-            'minItems': 5,
+            minItems: 5,
             maxItems: 15,
             items: {
-                'type': 'object',
+                type: 'object',
                 properties: {
                     id: {
-                        'type': 'number',
+                        type: 'number',
                         unique: true,
-                        'minimum': 1,
+                        minimum: 1,
                     },
                     name: {
                         type: 'string',
-                        'faker': 'commerce.productName',
+                        faker: 'commerce.productName',
                     },
                     price: {
                         type: 'number',
                         faker: 'commerce.price',
                     },
                     store: {
-                        'type': 'string',
-                        'faker': 'company.companyName',
+                        type: 'string',
+                        faker: 'company.companyName',
                     },
                 },
                 required: ['id', 'name', 'price', 'store'],
             },
         },
-        'lists': {
+        lists: {
             type: 'array',
-            'minItems': 5,
-            'maxItems': 10,
-            'items': {
-                'type': 'object',
+            minItems: 5,
+            maxItems: 10,
+            items: {
+                type: 'object',
                 properties: {
                     id: {
-                        'type': 'number',
+                        type: 'number',
                         unique: true,
                         minimum: 1,
                     },
                     nProducts: {
                         type: 'number',
-                        'minimum': 1,
+                        minimum: 1,
                         maximum: 10,
                     },
-                    'nItems': {
-                        'type': 'number',
-                        'minimum': 1,
+                    nItems: {
+                        type: 'number',
+                        minimum: 1,
                         maximum: 50,
                     },
                     cost: {
-                        'type': 'number',
+                        type: 'number',
                         faker: 'finance.amount',
                     },
                     date: {
                         type: 'string',
-                        'faker': 'date.recent',
+                        faker: 'date.past',
                     },
-                    'purchased': {
-                        'type': 'boolean',
+                    purchased: {
+                        type: 'boolean',
                     },
                     products: {
                         type: 'text',
                         faker: 'lorem.paragraph',
                     },
                 },
-                'required': ['id', 'nProducts', 'nItems', 'cost', 'date', 'purchased', 'products'],
+                required: ['id', 'nProducts', 'nItems', 'cost', 'date', 'purchased', 'products'],
             },
         },
     },

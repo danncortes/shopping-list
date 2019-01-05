@@ -1,10 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { fetchListsAction, deleteListAction, updateListAction } from '../../actions/lists';
 
 class ListsView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            logList: [],
+        };
+    }
     componentDidMount() {
         this.props.onFetchLists();
+    }
+
+    componentWillReceiveProps() {
+        this.setState({ logList: this.props.lists.data });
     }
 
     editList(list) {
@@ -20,8 +30,17 @@ class ListsView extends Component {
         this.props.onUpdateList(id, list);
     }
 
+    onFilter(date) {
+        const dateParam = new Date(date).setHours(0);
+        const logList = this.props.lists.data.filter((log) => {
+            const logDate = new Date(log.date).setHours(0, 0, 0, 0);
+            return dateParam === logDate;
+        });
+        this.setState({ logList });
+    }
+
     renderItems() {
-        const lists = this.props.lists.data.map(list => (
+        const lists = this.state.logList.map(list => (
             <tr key={list.id} className="valign-middle">
                 <td>{list.date}</td>
                 <td>{list.cost}</td>
@@ -48,20 +67,24 @@ class ListsView extends Component {
             return <div>Error Loading data</div>;
         }
         return (
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col">N Prod.</th>
-                        <th scope="col">N Items</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderItems()}
-                </tbody>
-            </table>
+            <Fragment>
+                <button onClick={() => { this.onFilter('11-09-2017'); }}>Filter 11-09-2017</button>
+                <button onClick={() => { this.onFilter('08-21-2017'); }}>Filter 08-21-2017</button>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">N Prod.</th>
+                            <th scope="col">N Items</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderItems()}
+                    </tbody>
+                </table>
+            </Fragment>
         );
     }
 }
