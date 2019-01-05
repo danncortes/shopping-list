@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchProductsAction } from '../../actions/products';
-import { addProductToListAction } from '../../actions/current-list';
-import { addProductToList, editProductOnList } from '../../actions';
+import { addProductToListAction, editProductOnListAction } from '../../actions/current-list';
 
-class ProductsList extends Component {
+class ProductListCreate extends Component {
     componentDidMount() {
         this.props.onFetchProducts();
     }
@@ -26,7 +25,7 @@ class ProductsList extends Component {
         const foundProduct = this.props.currentList.products.filter(item => item.id === product.id);
 
         if (foundProduct.length > 0) {
-            this.props.editProductOnList(newProd);
+            this.props.onEditProductOnList(newProd);
         } else {
             this.props.onAddProductToList([newProd], newProd.subTotal, this.props.currentList.id);
         }
@@ -82,6 +81,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
     onFetchProducts: () => dispatch(fetchProductsAction()),
     onAddProductToList: (products, subTotal, id) => dispatch(addProductToListAction(products, subTotal, id)),
+    onEditProductOnList: product => dispatch(editProductOnListAction(product)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListCreate);

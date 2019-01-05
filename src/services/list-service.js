@@ -19,3 +19,8 @@ export function updateList(id, list) {
         .catch((error) => { throw Error(error); });
 }
 
+export function postList(list) {
+    return axios.post(`${ROOT_URL}/lists`, list)
+        .then(response => response)
+        .catch((error) => { throw Error(error); });
+}

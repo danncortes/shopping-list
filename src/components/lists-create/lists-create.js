@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ProductsList from '../products-list/products-list';
-import ProductsSelectedList from '../products-selected-list/products-selected-list';
+import ProductListCreate from '../product-list-create/product-list-create';
+import CurrentList from '../current-list/current-list';
 
 class ListsCreate extends Component {
     render() {
@@ -9,12 +9,12 @@ class ListsCreate extends Component {
                 <div className="col-5">
                     <h4 className="mb-3">Crear Lista de Compras</h4>
                     <div className="box-list">
-                        {/*<ProductsSelectedList/> */}
+                        <CurrentList/>
                     </div>
                 </div>
                 <div className="col-7">
                     <h4 className="mb-3">Productos</h4>
-                    <ProductsList/>
+                    <ProductListCreate/>
                 </div>
             </section>
         );
