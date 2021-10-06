@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.21.2",
     "bootstrap": "^4.0.0-beta.3",
     "json-schema-faker": "^0.4.6",
     "moment": "^2.20.1",
